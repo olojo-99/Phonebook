@@ -458,6 +458,7 @@ void print_tree(struct tree_node *p) {
 }
 
 void test() {
+    FILE * fp;
     char * line;
     size_t len = 0;
     ssize_t read;
