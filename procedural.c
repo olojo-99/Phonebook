@@ -467,9 +467,9 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
 
     char *sub;
 
-    int pname;
-    int pnum;
-    int padd;
+    int pname = 0;
+    int pnum = 0;
+    int padd = 0;
 
     char * name;
     char * num;
