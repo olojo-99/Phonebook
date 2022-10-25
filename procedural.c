@@ -488,7 +488,7 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
         exit(EXIT_FAILURE);
     }
 
-    while((read = getline(&line, &len, fp)) != -1){
+    while(((read = getline(&line, &len, fp)) != -1) && j < 7){
         //printf("%s", line); //used to test file contents
         
         //name line
