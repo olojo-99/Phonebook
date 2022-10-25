@@ -519,8 +519,11 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
     }
     for (int i = 0; i < 6; i++)
     {
+        printf("copying name: %s", names[i]);
         strcpy(e.name, names[i]);
+        printf("Copying num: %s", nums[i]);
         e.phone = atoi(nums[i]);
+        printf("Copying add: %s", addresses[i]);
         strcpy(e.address, addresses[i]);
         nametree = name_insert(nametree, e);
         numtree = num_insert(numtree, e);
