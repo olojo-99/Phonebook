@@ -495,6 +495,7 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
         if(j % 3 == 0) {
             name = line;
             names[pname] = name;
+            printf("name entered: %s\n", names[pname]);
             pname++;
             // printf("%s", name); test code
         }
@@ -519,11 +520,11 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
     }
     for (int i = 0; i < 6; i++)
     {
-        printf("copying name: %s", names[i]);
+        //printf("copying name: %s\n", names[i]);
         strcpy(e.name, names[i]);
-        printf("Copying num: %s", nums[i]);
+        //printf("Copying num: %s\n", nums[i]);
         e.phone = atoi(nums[i]);
-        printf("Copying add: %s", addresses[i]);
+        //printf("Copying add: %s\n", addresses[i]);
         strcpy(e.address, addresses[i]);
         nametree = name_insert(nametree, e);
         numtree = num_insert(numtree, e);
