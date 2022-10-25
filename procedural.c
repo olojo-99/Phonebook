@@ -32,7 +32,7 @@ void num_search(struct tree_node *p, unsigned long n);
 
 void print_tree(struct tree_node *p);
 
-void test();
+void test(struct tree_node *nametree, struct tree_node *numtree, Entry e);
 
 
 // Main function
@@ -147,7 +147,7 @@ int main(void)
         }
 
         else if (option == 7) {
-            test();
+            test(pname, pnum, e);
         } 
 
 
@@ -457,7 +457,7 @@ void print_tree(struct tree_node *p) {
     }
 }
 
-void test() {
+void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
     FILE * fp;
     char * line;
     size_t len = 0;
@@ -467,9 +467,17 @@ void test() {
 
     char *sub;
 
+    int pname;
+    int pnum;
+    int padd;
+
     char * name;
     char * num;
     char * address;
+
+    char *names[6];
+    char *nums[6];
+    char *addresses[6];
 
     //open test data file
     fp = fopen("test_data.txt", "r");
@@ -486,43 +494,36 @@ void test() {
         //name line
         if(j % 3 == 0) {
             name = line;
+            names[pname] = name;
+            pname++;
             // printf("%s", name); test code
         }
 
         // number line
         else if(j % 3 == 1){
             num = line;
+            nums[pnum] = num;
+            pnum++;
             // printf("%s", num);
         }
 
         //address line
         else if(j % 3 == 2){
             address = line;
-            printf("%s", address);
+            addresses[padd] = address;
+            padd++;
+            // printf("%s", address);
         }
 
-
-        // 0 = name, 1 = number, 2 = address
-        // sub = malloc(len + 1);
-
-        // for (int i = 0; i < 3; i++)
-        // {
-        //     // looking for first ,
-        //     do {
-        //         j++;
-        //     }
-        //     while(strcmp(traverser, line[j]) != 0);
-
-        //     if(i == 0){ // the name
-        //         for (int k = 0; i < count; i++)
-        //         {
-        //             /* code */
-        //         }
-                
-        //     }
-        // }
         j++;
     }
+    for (int i = 0; i < 6; i++)
+    {
+        strcpy(e.name, names[i]);
+        e.phone = atoi(nums[i]);
+        strcpy(e.address, addresses[i]);
+    }
+    
 
     fclose(fp);
     if(line){
