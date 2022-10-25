@@ -32,6 +32,7 @@ void num_search(struct tree_node *p, unsigned long n);
 
 void print_tree(struct tree_node *p);
 
+void test(FILE *fp);
 
 
 // Main function
@@ -57,7 +58,8 @@ int main(void)
         printf("3. Name Search\n");
         printf("4. Number Search\n");         
         printf("5. List\n");         
-        printf("6. Quit\n");         
+        printf("6. Quit\n"); 
+        printf("7. Test.\n");        
 
         /*Get option from the user.*/        
         printf("\nPlease select an option: ");         
@@ -142,6 +144,10 @@ int main(void)
         else if (option == 6) {
             printf("Exiting.\n");           
             break; /*End the program.*/       
+        }
+
+        else if (option == 7) {
+
         } 
 
 
@@ -451,3 +457,25 @@ void print_tree(struct tree_node *p) {
     }
 }
 
+void test(FILE *fp) {
+    char * line;
+    size_t len = 0;
+    ssize_t read;
+    //open test data file
+    fp = fopen("test_data.txt", "r");
+    // if file does not exist
+
+    if (fp == NULL){
+        exit(EXIT_FAILURE);
+    }
+
+    while((read = getline(&line, &len, fp)) != -1){
+        printf("Retrieved line of length %zu:\n", read);
+        printf("%s", line);
+    }
+
+    fclose(fp);
+    if(line){
+        free(line);
+    }
+}
