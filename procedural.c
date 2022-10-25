@@ -462,6 +462,15 @@ void test() {
     char * line;
     size_t len = 0;
     ssize_t read;
+    char traverser = ",";
+    int j = 0;
+
+    char *sub;
+
+    char * name;
+    int num;
+    char * address;
+
     //open test data file
     fp = fopen("test_data.txt", "r");
     // if file does not exist
@@ -471,8 +480,27 @@ void test() {
     }
 
     while((read = getline(&line, &len, fp)) != -1){
-        printf("Retrieved line of length %zu:\n", read);
-        printf("%s", line);
+        printf("%s", line); //used to test file contents
+        // 0 = name, 1 = number, 2 = address
+        // sub = malloc(len + 1);
+
+        // for (int i = 0; i < 3; i++)
+        // {
+        //     // looking for first ,
+        //     do {
+        //         j++;
+        //     }
+        //     while(strcmp(traverser, line[j]) != 0);
+
+        //     if(i == 0){ // the name
+        //         for (int k = 0; i < count; i++)
+        //         {
+        //             /* code */
+        //         }
+                
+        //     }
+        // }
+        
     }
 
     fclose(fp);
