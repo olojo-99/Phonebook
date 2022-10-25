@@ -32,7 +32,7 @@ void num_search(struct tree_node *p, unsigned long n);
 
 void print_tree(struct tree_node *p);
 
-void test(FILE *fp);
+void test();
 
 
 // Main function
@@ -147,7 +147,7 @@ int main(void)
         }
 
         else if (option == 7) {
-
+            test();
         } 
 
 
@@ -457,7 +457,7 @@ void print_tree(struct tree_node *p) {
     }
 }
 
-void test(FILE *fp) {
+void test() {
     char * line;
     size_t len = 0;
     ssize_t read;
