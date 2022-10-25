@@ -522,6 +522,8 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
         strcpy(e.name, names[i]);
         e.phone = atoi(nums[i]);
         strcpy(e.address, addresses[i]);
+        pname = name_insert(pname, e);
+        pnum = num_insert(pnum, e);
     }
     
 
