@@ -491,7 +491,7 @@ void test() {
 
         // number line
         else if(j % 3 == 1){
-            num = line;
+            num = atoi(line);
             printf("%d", num);
         }
 
