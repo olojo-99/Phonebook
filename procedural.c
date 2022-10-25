@@ -488,7 +488,7 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
         exit(EXIT_FAILURE);
     }
 
-    while(((read = getline(&line, &len, fp)) != -1) && j < 7){
+    while((read = getline(&line, &len, fp)) != -1){
         //printf("%s", line); //used to test file contents
         
         //name line
@@ -517,6 +517,9 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
         }
 
         j++;
+        if(j == 6){
+            break;
+        }
     }
     for (int i = 0; i < 6; i++)
     {
