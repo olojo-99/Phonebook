@@ -489,7 +489,7 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
     }
 
     while((read = getline(&line, &len, fp)) != -1){
-        printf("%s", line); //used to test file contents
+        //printf("%s", line); //used to test file contents
         
         //name line
         if(j % 3 == 0) {
@@ -525,6 +525,8 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
         nametree = name_insert(nametree, e);
         numtree = num_insert(numtree, e);
     }
+
+    print_tree(nametree);
     
 
     fclose(fp);
