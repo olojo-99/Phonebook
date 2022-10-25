@@ -517,9 +517,7 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
         }
 
         j++;
-        if(j == 6){
-            break;
-        }
+        printf("%d\n", j);
     }
     for (int i = 0; i < 6; i++)
     {
