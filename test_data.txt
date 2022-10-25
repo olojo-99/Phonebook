@@ -1,6 +1,18 @@
-Thomas Kelly,123,house1
-Przemek Majda,456,house2
-Benjamin Olojo,789,house3
-Tuomas B,321,house4
-Mick W,654,house5
-John Cena,987,house6
+Thomas Kelly
+123
+house1
+Przemek Majda
+456
+house2
+Benjamin Olojo
+789
+house3
+Tuomas B
+321
+house4
+Mick W
+654
+house5
+John Cena
+987
+house6
