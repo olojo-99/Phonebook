@@ -468,7 +468,7 @@ void test() {
     char *sub;
 
     char * name;
-    int num;
+    char * num;
     char * address;
 
     //open test data file
@@ -491,8 +491,8 @@ void test() {
 
         // number line
         else if(j % 3 == 1){
-            num = atoi(line);
-            printf("%d", num);
+            num = line;
+            printf("%s", num);
         }
 
 
