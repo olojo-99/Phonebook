@@ -492,7 +492,13 @@ void test() {
         // number line
         else if(j % 3 == 1){
             num = line;
-            printf("%s", num);
+            // printf("%s", num);
+        }
+
+        //address line
+        else if(j % 3 == 2){
+            address = line;
+            printf("%s", address);
         }
 
 
