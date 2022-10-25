@@ -486,7 +486,13 @@ void test() {
         //name line
         if(j % 3 == 0) {
             name = line;
-            printf("%s", name);
+            // printf("%s", name); test code
+        }
+
+        // number line
+        else if(j % 3 == 1){
+            num = line;
+            printf("%d", num);
         }
 
 
