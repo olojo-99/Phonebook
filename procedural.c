@@ -462,7 +462,7 @@ void test() {
     char * line;
     size_t len = 0;
     ssize_t read;
-    char traverser = ",";
+//    char traverser = ",";
     int j = 0;
 
     char *sub;
@@ -476,11 +476,20 @@ void test() {
     // if file does not exist
 
     if (fp == NULL){
+        printf("failure opening file");
         exit(EXIT_FAILURE);
     }
 
     while((read = getline(&line, &len, fp)) != -1){
         printf("%s", line); //used to test file contents
+        
+        //name line
+        if(j % 3 == 0) {
+            name = line;
+            printf("%s", name);
+        }
+
+
         // 0 = name, 1 = number, 2 = address
         // sub = malloc(len + 1);
 
@@ -500,7 +509,7 @@ void test() {
                 
         //     }
         // }
-        
+        j++;
     }
 
     fclose(fp);
