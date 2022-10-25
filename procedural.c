@@ -492,7 +492,7 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
         //printf("%s", line); //used to test file contents
         
         //name line
-        if(j % 3 == 0) {
+        if(j % 3 == 0 ) {
             name = line;
             names[pname] = name;
             printf("name entered: %s\n", names[pname]);
@@ -501,7 +501,7 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
         }
 
         // number line
-        else if(j % 3 == 1){
+        else if(j % 3 == 1 || j == 0){
             num = line;
             nums[pnum] = num;
             pnum++;
