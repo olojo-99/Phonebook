@@ -368,7 +368,7 @@ char* name_search(struct tree_node *p, char n[])
 {    
     // char res[] = "Member not found\n";
     /*If entry is before root:*/    
-    if (p != NULL) {
+    if (p == NULL) {
         return "Member not found\n";
     }
 
@@ -528,7 +528,7 @@ struct tree_node **test(struct tree_node *nametree, struct tree_node *numtree, E
     }
 
     // print_tree(nametree);
-    if (numtree){
+    if (numtree != NULL){
         num_search(numtree, "456");
     }
     
