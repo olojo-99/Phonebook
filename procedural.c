@@ -412,12 +412,14 @@ void num_search(struct tree_node *p, char n[])
 
     else if (strcmp(n, p->data.phone) < 0) {         
         /*Check before root.*/
+        printf("going left\n");
         num_search(p->left, n);
     }
 
     /*If entry is after root:*/    
     else if (strcmp(n, p->data.phone) > 0) {
-        /*Check after root.*/       
+        /*Check after root.*/
+        printf("going right \n");       
         num_search(p->right, n);
     }
 
