@@ -71,15 +71,15 @@ int main(void)
             // scanf("%c", &temp); // temp statement to clear buffer
             fflush(stdin);
             printf("Please enter the name: ");             
-            scanf("%s[^\n]", e.name);
+            scanf("%10[0-9a-zA-Z ]", e.name);
 
             printf("Please enter the phone number: ");             
-            scanf("%s[^\n]", e.phone);             
+            scanf("%10[0-9a-zA-Z ]", e.phone);             
 
             // scanf("%c", &temp); // temp statement to clear buffer
             fflush(stdin);
             printf("Please enter the address: ");             
-            scanf("%s[^\n]", e.address);
+            scanf("%10[0-9a-zA-Z ]", e.address);
 
             /*Insert name*/           
             pname = name_insert(pname, e);
