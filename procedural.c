@@ -525,7 +525,8 @@ struct tree_node *test(struct tree_node *nametree, struct tree_node *numtree, En
         numtree = num_insert(numtree, e);
     }
 
-    print_tree(nametree);
+    // print_tree(nametree);
+    print_tree(numtree);
     
 
     fclose(fp);
