@@ -130,7 +130,7 @@ int main(void)
             // scanf("%c", &temp); // temp statement to clear buffer
             clean_stdin();
             printf("Please enter the number: ");             
-            fgets(nnum, 20, stdin)
+            fgets(num, 20, stdin);
 
             /*Search for a node.*/            
             num_search(pnum, num);         
