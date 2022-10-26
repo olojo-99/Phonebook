@@ -296,67 +296,67 @@ struct tree_node *delete_name (struct tree_node *p, char n[])
 
 
 
- /*Deletes a node from the tree.*/
-struct tree_node *delete_num (struct tree_node *p, unsigned long n)
-{
-    // empty node
-    if (p == NULL) {
-        return NULL;
-    } 
+//  /*Deletes a node from the tree.*/
+// struct tree_node *delete_num (struct tree_node *p, unsigned long n)
+// {
+//     // empty node
+//     if (p == NULL) {
+//         return NULL;
+//     } 
 
-    /*If entry is before root:*/   
-    if (n < p->data.phone) {        
+//     /*If entry is before root:*/   
+//     if (n < p->data.phone) {        
         
-        printf("on left");
-        /*Delete from before root.*/       
-        p->left = delete_num(p->left, n);   
-    }
+//         printf("on left");
+//         /*Delete from before root.*/       
+//         p->left = delete_num(p->left, n);   
+//     }
 
-    /*If entry is after root:*/   
-    else if (n > p->data.phone) {  
+//     /*If entry is after root:*/   
+//     else if (n > p->data.phone) {  
 
-        printf("on right");
-        /*Delete from after root.*/       
-        p->right = delete_num(p->right, n);    
-    }
+//         printf("on right");
+//         /*Delete from after root.*/       
+//         p->right = delete_num(p->right, n);    
+//     }
 
-    /*If entry is located and has a left and right branch:*/ 
-    else if (p->left != NULL && p->right != NULL) {
-        printf("has left and right children");  
-        /*Find which branch moves up in the tree.*/  
-        p->data = findmin(p->right)->data;        
-        p->right = delete_num(p->right, n);
+//     /*If entry is located and has a left and right branch:*/ 
+//     else if (p->left != NULL && p->right != NULL) {
+//         printf("has left and right children");  
+//         /*Find which branch moves up in the tree.*/  
+//         p->data = findmin(p->right)->data;        
+//         p->right = delete_num(p->right, n);
 
-        // /*Confirm node deletion.*/        
-        // printf("Record deleted successfully.\n\n");     
-    }
+//         // /*Confirm node deletion.*/        
+//         // printf("Record deleted successfully.\n\n");     
+//     }
 
-    /*If entry is located and has a left branch:*/    
-    else if (p->left != NULL) {         
-        /*Move left branch up.*/       
-        p = p->left;         
-        // /*Confirm node deletion.*/        
-        // printf("Record deleted successfully.\n\n");   
-    }
+//     /*If entry is located and has a left branch:*/    
+//     else if (p->left != NULL) {         
+//         /*Move left branch up.*/       
+//         p = p->left;         
+//         // /*Confirm node deletion.*/        
+//         // printf("Record deleted successfully.\n\n");   
+//     }
 
-    /*If entry is located and has a right branch:*/  
-    else if (p->right != NULL) {      
-        /*Move right branch up.*/       
-        p = p->right;      
-        // /*Confirm node deletion.*/  
-        // printf("Record deleted successfully.\n\n");    
-    }
+//     /*If entry is located and has a right branch:*/  
+//     else if (p->right != NULL) {      
+//         /*Move right branch up.*/       
+//         p = p->right;      
+//         // /*Confirm node deletion.*/  
+//         // printf("Record deleted successfully.\n\n");    
+//     }
 
-    /*If entry is not found:*/ 
-    else {       
-        /*Error.*/     
-        printf("Number record could not be found.\n\n");    
+//     /*If entry is not found:*/ 
+//     else {       
+//         /*Error.*/     
+//         printf("Number record could not be found.\n\n");    
 
-    }
+//     }
 
-    /*Return revised tree.*/    
-    return p;
-}
+//     /*Return revised tree.*/    
+//     return p;
+// }
 
 
 
@@ -453,7 +453,7 @@ void print_tree(struct tree_node *p) {
         
         /*Print node data.*/        
         print_tree(p->left);        
-        printf("%s, %lu, %s\n\n", p->data.name, p->data.phone, p->data.address);        
+        printf("%s, %s, %s\n\n", p->data.name, p->data.phone, p->data.address);        
         print_tree(p->right);
     }
 }
