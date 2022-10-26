@@ -404,7 +404,7 @@ char* name_search(struct tree_node *p, char n[])
 void num_search(struct tree_node *p, char n[]) 
 {   
       
-    if (!p) {
+    if (p) {
         printf("Member not found.\n");
         return;
 
