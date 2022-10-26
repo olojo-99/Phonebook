@@ -489,18 +489,12 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
     }
 
     while((read = getline(&line, &len, fp)) != -1){
-        printf("%s", line); //used to test file contents
+        // printf("%s", line); //used to test file contents
         
         //name line
         if(j % 3 == 0  && j < 17) {
             name = line;
-            printf("%s\n", name);
-            names[pname] = strdup(name);
-            for (int r = 0; r <= pname; r++)
-            {
-                printf("name: %s index: %d\n", names[r], r);
-            }
-            
+            names[pname] = strdup(name);            
             pname++;
             // printf("%s", name); test code
         }
@@ -509,7 +503,7 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
         else if(j % 3 == 1){
             num = line;
             nums[pnum] = strdup(num);
-            printf("num entered: %s\n", nums[pnum]);
+            // printf("num entered: %s\n", nums[pnum]);
             pnum++;
             // printf("%s", num);
         }
@@ -518,16 +512,12 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
         else if(j % 3 == 2){
             address = line;
             addresses[padd] = strdup(address);
-            printf("address entered: %s\n", addresses[padd]);
+            // printf("address entered: %s\n", addresses[padd]);
             padd++;
             // printf("%s", address);
         }
 
         j++;
-        // found issue
-        // whenever any new value is  written to any of the 3 arrays
-        // it will overwrite each array[0] witht that value
-        // i have no idea why this happens
     }
     
     for (int i = 0; i < 6; i++)
