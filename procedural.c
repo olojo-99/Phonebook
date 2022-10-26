@@ -5,7 +5,7 @@
 /*Create phone book entry structure.*/
 typedef struct pbentry {   
     char name[50];  
-    unsigned long phone;
+    char phone[20];
     char address[30];
 }Entry;
 
@@ -24,11 +24,11 @@ struct tree_node *num_insert(struct tree_node *p, Entry e);
 
 struct tree_node *create_node (struct tree_node *q, struct tree_node *r, Entry e); 
 struct tree_node *delete_name (struct tree_node *p, char n[]);
-struct tree_node *delete_num (struct tree_node *p, unsigned long n);
+struct tree_node *delete_num (struct tree_node *p, char n[]);
 struct tree_node *findmin(struct tree_node *p);
 
-unsigned long name_search(struct tree_node *p, char n[]);
-void num_search(struct tree_node *p, unsigned long n);
+char* name_search(struct tree_node *p, char n[]);
+void num_search(struct tree_node *p, char n[]);
 
 void print_tree(struct tree_node *p);
 
@@ -43,8 +43,8 @@ int main(void)
     struct tree_node *pname = NULL; /*name tree node*/    
     struct tree_node *pnum = NULL; /*num tree node*/
 
-    char name[50]; /*Used for deletions, editing, and searching*/
-    unsigned long num;
+    char name[50]; /* Used for deletions and searching */
+    char num[20];
     // char temp; // used to clear input stream for space delimitted inputs
 
     /*Return to menu after each instruction until the user quits.*/    
@@ -71,8 +71,9 @@ int main(void)
             printf("Please enter the name: ");             
             scanf("%[^\n]", e.name);
 
+            fflush(stdin);
             printf("Please enter the phone number: ");             
-            scanf("%lu", &e.phone);             
+            scanf("%[^\n]", e.phone);             
 
             // scanf("%c", &temp); // temp statement to clear buffer
             fflush(stdin);
@@ -86,7 +87,7 @@ int main(void)
             pnum = num_insert(pnum, e);
 
             /*Confirm node creation.*/            
-            printf("Record added successfully.\n\n");
+            printf("Contact for %s added successfully.\n\n", e.name);
         }
 
 
@@ -98,13 +99,13 @@ int main(void)
             scanf("%[^\n]", name);
 
             /* Find num associated with name */
-            num = name_search(pname, name);        
+            char *contact_num = name_search(pname, name);
 
-            /*Delete a node from name tree*/            
+            /*Delete a node from name tree*/ 
             pname = delete_name(pname, name);
 
             /*Delete the associated num from num tree*/
-            pnum = delete_num(pnum, num);
+            pnum = delete_num(pnum, contact_num);
         }
 
 
@@ -125,7 +126,7 @@ int main(void)
             // scanf("%c", &temp); // temp statement to clear buffer
             fflush(stdin);
             printf("Please enter the number: ");             
-            scanf("%lu", &num);
+            scanf("%[^\n]", num);
 
             /*Search for a node.*/            
             num_search(pnum, num);         
@@ -134,7 +135,8 @@ int main(void)
 
         /*If option is 5 (List):*/              
         else if (option == 5) {          
-            print_tree(pname);       
+            print_tree(pname);
+            print_tree(pnum);       
         }   
 
 
@@ -171,13 +173,13 @@ struct tree_node *num_insert(struct tree_node *p, Entry e)
     }
 
     /*If there is a root, and the entry belongs before the root:*/    
-    else if (e.phone < p->data.phone) {      
+    else if (strcmp(e.name, p->data.name) < 0) {      
         /*Add before root.*/       
         p->left = num_insert(p->left, e);     
     }
 
     /*If there is a root, and the entry belongs after the root:*/    
-    else if (e.phone > p->data.phone) {    
+    else if (strcmp(e.name, p->data.name) > 0) {    
         /*Add after root.*/    
         p->right = num_insert(p->right, e);   
     }
@@ -224,160 +226,137 @@ struct tree_node *create_node (struct tree_node *q, struct tree_node *r, Entry e
     newnode->left = q;     
     newnode->right = r;     
     return newnode;
-}  
+}
 
 
-
- /*Deletes a node from the tree.*/
-struct tree_node *delete_name (struct tree_node *p, char n[])
+struct tree_node *delete_name(struct tree_node *p, char n[])
 {
     // empty node
     if (p == NULL) {
         return NULL;
     }
 
-    /*If entry is before root:*/   
+    /*If name is before root:*/   
     if (strcmp(n, p->data.name) < 0) {        
         
         /*Delete from before root.*/       
         p->left = delete_name(p->left, n);    
     }
 
-    /*If entry is after root:*/   
+    /*if name is after root:*/   
     else if (strcmp(n, p->data.name) > 0) {  
 
         /*Delete from after root.*/       
         p->right = delete_name(p->right, n);    
     }
 
-    /*If entry is located and has a left and right branch:*/ 
-    else if (p->left != NULL && p->right != NULL) {   
+    // node to be deleted
+    else {
+        // node with one or no child
+        if (p->left == NULL) {
+            struct tree_node *tmp = p->right;
+            free(p);
+            printf("The contact for %s has been deleted.\n\n", n);
+            return tmp;
+        }
 
-        /*Find which branch moves up in the tree.*/  
-        p->data = findmin(p->right)->data;        
-        p->right = delete_name(p->right, n);
+        else if (p->right == NULL) {
+            struct tree_node *tmp = p->left;
+            free(p);
+            printf("The contact for %s has been deleted.\n\n", n);
+            return tmp;
+        }
 
-        /*Confirm node deletion.*/        
-        printf("Record deleted successfully.\n\n");     
+        // a node with two children
+        // get the inorder successor - smallest right tree
+        struct tree_node *tmp = findmin(p->right);
+
+        // copy inorder successor and copy to node
+        p->data = tmp->data;
+
+        // delete the inorder successor
+        p->right = delete_name(p->right, tmp->data.name);
+
     }
-
-    /*If entry is located and has a left branch:*/    
-    else if (p->left != NULL) {         
-        /*Move left branch up.*/       
-        p = p->left;         
-        /*Confirm node deletion.*/        
-        printf("Record deleted successfully.\n\n");   
-    }
-
-    /*If entry is located and has a right branch:*/  
-    else if (p->right != NULL) {      
-        /*Move right branch up.*/       
-        p = p->right;      
-        /*Confirm node deletion.*/  
-        printf("Record deleted successfully.\n\n");    
-    }
-
-    /*If entry is not found:*/ 
-    else {       
-        /*Error.*/     
-        printf("Name record could not be found.\n\n");
-    }
-
-    /*Return revised tree.*/    
     return p;
 }
 
 
 
- /*Deletes a node from the tree.*/
-struct tree_node *delete_num (struct tree_node *p, unsigned long n)
+struct tree_node *delete_num(struct tree_node *p, char n[])
 {
     // empty node
     if (p == NULL) {
         return NULL;
-    } 
-
-    /*If entry is before root:*/   
-    if (n < p->data.phone) {        
-        
-        printf("on left");
-        /*Delete from before root.*/       
-        p->left = delete_num(p->left, n);   
     }
 
-    /*If entry is after root:*/   
-    else if (n > p->data.phone) {  
+    /*if number is before root:*/   
+    if (strcmp(n, p->data.phone) < 0) {        
+        
+        /*Delete from before root.*/       
+        p->left = delete_num(p->left, n);    
+    }
 
-        printf("on right");
+    /*If number is after root:*/   
+    else if (strcmp(n, p->data.phone) > 0) {  
+
         /*Delete from after root.*/       
         p->right = delete_num(p->right, n);    
     }
 
-    /*If entry is located and has a left and right branch:*/ 
-    else if (p->left != NULL && p->right != NULL) {
-        printf("has left and right children");  
-        /*Find which branch moves up in the tree.*/  
-        p->data = findmin(p->right)->data;        
-        p->right = delete_num(p->right, n);
+    // node to be deleted
+    else {
+        // node with one or no child
+        if (p->left == NULL) {
+            struct tree_node *tmp = p->right;
+            free(p);
+            return tmp;
+        }
 
-        // /*Confirm node deletion.*/        
-        // printf("Record deleted successfully.\n\n");     
+        else if (p->right == NULL) {
+            struct tree_node *tmp = p->left;
+            free(p);
+            return tmp;
+        }
+
+        // a node with two children
+        // get the inorder successor - smallest right tree
+        struct tree_node *tmp = findmin(p->right);
+
+        // copy inorder successor and copy to node
+        p->data = tmp->data;
+
+        // delete the inorder successor
+        p->right = delete_num(p->right, tmp->data.phone);
     }
-
-    /*If entry is located and has a left branch:*/    
-    else if (p->left != NULL) {         
-        /*Move left branch up.*/       
-        p = p->left;         
-        // /*Confirm node deletion.*/        
-        // printf("Record deleted successfully.\n\n");   
-    }
-
-    /*If entry is located and has a right branch:*/  
-    else if (p->right != NULL) {      
-        /*Move right branch up.*/       
-        p = p->right;      
-        // /*Confirm node deletion.*/  
-        // printf("Record deleted successfully.\n\n");    
-    }
-
-    /*If entry is not found:*/ 
-    else {       
-        /*Error.*/     
-        printf("Number record could not be found.\n\n");    
-
-    }
-
-    /*Return revised tree.*/    
     return p;
 }
 
 
 
-/*Finds the leftmost node in the right branch.*/
 struct tree_node *findmin(struct tree_node *p)
-{    
-    /*If left node is not empty.*/    
-    if (p->left != NULL) {         
-        /*Go to the left node.*/        
-        findmin(p->left);
-    }
+{
+    struct tree_node *curr = p;
 
-    /*Return leftmost node.*/    
-    return p;
-}   
+    /*find the leftmost node in tree*/
+    while (curr && curr->left != NULL){
+        curr = curr->left;
+    }
+    return curr;
+}
 
 
 
 /*Searches for a node and retrieves data.*/
-unsigned long name_search(struct tree_node *p, char n[]) 
+char* name_search(struct tree_node *p, char n[]) 
 {    
+    // char res[] = "Member not found\n";
     /*If entry is before root:*/    
     if (p == NULL) {
-        printf("Member not found.\n");
-        return 0;
+        return "Member not found\n";
     }
 
-    if (strcmp(n, p->data.name) < 0) {         
+    else if (strcmp(n, p->data.name) < 0) {         
         /*Check before root.*/
         name_search(p->left, n);
     }
@@ -390,7 +369,7 @@ unsigned long name_search(struct tree_node *p, char n[])
 
     /*If entry is located:*/    
     else if (strcmp(n, p->data.name) == 0) {
-        printf("%s, %lu, %s\n\n", p->data.name, p->data.phone, p->data.address); /*Print out*/
+        printf("%s, %s, %s\n\n", p->data.name, p->data.phone, p->data.address); /*Print out*/
         return p->data.phone;
     }
 
@@ -400,13 +379,13 @@ unsigned long name_search(struct tree_node *p, char n[])
         printf("Record could not be found.\n\n");
     }
 
-    return 0;
+    return "Member not found\n";
 }
 
 
 
 /*Searches for a node and retrieves data.*/
-void num_search(struct tree_node *p, unsigned long n) 
+void num_search(struct tree_node *p, char n[]) 
 {    
     /*If entry is before root:*/    
     if (p == NULL) {
@@ -414,24 +393,24 @@ void num_search(struct tree_node *p, unsigned long n)
         return;
     }
 
-    if (n < p->data.phone) {         
+    else if (strcmp(n, p->data.phone) < 0) {         
         /*Check before root.*/
         num_search(p->left, n);
     }
 
     /*If entry is after root:*/    
-    else if (n > p->data.phone) {
+    else if (strcmp(n, p->data.phone) > 0) {
         /*Check after root.*/       
         num_search(p->right, n);
     }
 
     /*If entry is located:*/    
-    else if (n == p->data.phone) {
-        printf("%s, %lu, %s\n\n", p->data.name, p->data.phone, p->data.address); /*Print out*/
+    else if (strcmp(n, p->data.phone) == 0) {
+        printf("%s, %s, %s\n\n", p->data.name, p->data.phone, p->data.address); /*Print out*/
     }
 
     /*If entry is not found:*/   
-    else {      
+    else {
         /*Error.*/       
         printf("Record could not be found.\n\n");
     }
@@ -446,7 +425,7 @@ void print_tree(struct tree_node *p) {
         
         /*Print node data.*/        
         print_tree(p->left);        
-        printf("%s, %lu, %s\n\n", p->data.name, p->data.phone, p->data.address);        
+        printf("%s, %s, %s\n\n", p->data.name, p->data.phone, p->data.address);        
         print_tree(p->right);
     }
 }
