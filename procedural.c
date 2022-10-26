@@ -456,7 +456,7 @@ void print_tree(struct tree_node *p) {
         
         /*Print node data.*/        
         print_tree(p->left);        
-        printf("%s, %s, %s\n\n", p->data.name, p->data.phone, p->data.address);        
+        printf("%s%s%s\n\n", p->data.name, p->data.phone, p->data.address);        
         print_tree(p->right);
     }
 }
@@ -496,9 +496,9 @@ struct tree_node *test(struct tree_node *nametree, struct tree_node *numtree, En
         // printf("%s", line); //used to test file contents
         
         // removing newline char at end of line
-        if (line[strlen(line) -1] == '\n'){
-            line[strlen(line) -1] = '\0';
-        }
+        // if (line[strlen(line) -1] == '\n'){
+        //     line[strlen(line) -1] = '\0';
+        // }
 
         if(j % 3 == 0  && j < 17) {
             name = line;
