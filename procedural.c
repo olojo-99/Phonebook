@@ -504,6 +504,7 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
         else if(j % 3 == 1){
             num = line;
             nums[pnum] = num;
+            printf("num entered: %s\n", nums[pnum]);
             pnum++;
             // printf("%s", num);
         }
@@ -512,6 +513,7 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
         else if(j % 3 == 2){
             address = line;
             addresses[padd] = address;
+            printf("address entered: %s\n", addresses[padd]);
             padd++;
             // printf("%s", address);
         }
