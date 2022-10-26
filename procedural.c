@@ -519,8 +519,9 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
         }
 
         j++;
+        printf("name1: %s\n\n", names[0]);
     }
-    printf("name1: %s\n\n", names[0]);
+    
     for (int i = 0; i < 6; i++)
     {
         printf("copying name: %s\n", names[i]);
