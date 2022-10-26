@@ -494,6 +494,7 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
         //name line
         if(j % 3 == 0  && j < 17) {
             name = line;
+            printf("%s\n", name);
             names[pname] = name;
             printf("name entered: %s\n", names[pname]);
             pname++;
