@@ -130,7 +130,7 @@ int main(void)
             // scanf("%c", &temp); // temp statement to clear buffer
             fflush(stdin);
             printf("Please enter the number: ");             
-            scanf("%d[^\n]", num);
+            scanf("%s[^\n]", num);
 
             /*Search for a node.*/            
             //num_search(pnum, num);         
