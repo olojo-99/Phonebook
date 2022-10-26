@@ -74,7 +74,7 @@ int main(void)
             scanf("%s[^\n]", e.name);
 
             printf("Please enter the phone number: ");             
-            scanf("%lu", &e.phone);             
+            scanf("%lu[^\n]", &e.phone);             
 
             // scanf("%c", &temp); // temp statement to clear buffer
             fflush(stdin);
