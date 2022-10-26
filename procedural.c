@@ -71,7 +71,7 @@ int main(void)
             // scanf("%c", &temp); // temp statement to clear buffer
             fflush(stdin);
             printf("Please enter the name: ");             
-            scanf("%[^\n]", e.name);
+            scanf("%s[^\n]", e.name);
 
             printf("Please enter the phone number: ");             
             scanf("%lu", &e.phone);             
@@ -79,7 +79,7 @@ int main(void)
             // scanf("%c", &temp); // temp statement to clear buffer
             fflush(stdin);
             printf("Please enter the address: ");             
-            scanf("%[^\n]", e.address);
+            scanf("%s[^\n]", e.address);
 
             /*Insert name*/           
             pname = name_insert(pname, e);
@@ -97,7 +97,7 @@ int main(void)
             // scanf("%c", &temp); // temp statement to clear buffer
             fflush(stdin);
             printf("Please enter the name: "); 
-            scanf("%[^\n]", name);
+            scanf("%s[^\n]", name);
 
             /* Find num associated with name */
             num = name_search(pname, name);        
@@ -115,7 +115,7 @@ int main(void)
             // scanf("%c", &temp); // temp statement to clear buffer
             fflush(stdin);
             printf("Please enter the name: ");             
-            scanf("%[^\n]", name); 
+            scanf("%s[^\n]", name); 
 
             /*Search for a node.*/            
             name_search(pname, name);         
