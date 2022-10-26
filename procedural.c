@@ -489,7 +489,7 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
     }
 
     while((read = getline(&line, &len, fp)) != -1){
-        //printf("%s", line); //used to test file contents
+        printf("%s", line); //used to test file contents
         
         //name line
         if(j % 3 == 0  && j < 17) {
@@ -497,7 +497,6 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
             names[pname] = name;
             printf("name entered: %s\n", names[pname]);
             pname++;
-            printf("%d\n", pname);
             // printf("%s", name); test code
         }
 
@@ -520,10 +519,10 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
         }
 
         j++;
-        printf("name1: %s\n\n", names[0]);
-        printf("num1: %s\n\n", nums[0]);
-        printf("add1: %s\n\n", addresses[0]);
-        // found issue it overwrite name
+        // found issue
+        // whenever any new value is  written to any of the 3 arrays
+        // it will overwrite each array[0] witht that value
+        // i have no idea why this happens
     }
     
     for (int i = 0; i < 6; i++)
