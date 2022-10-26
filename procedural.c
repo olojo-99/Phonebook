@@ -116,24 +116,24 @@ int main(void)
         /*If option is 3 (Name Search):*/                
         else if (option == 3) {          
             // scanf("%c", &temp); // temp statement to clear buffer
-            fflush(stdin);
+            clean_stdin();
             printf("Please enter the name: ");             
-            scanf("%s[^\n]", name); 
+            fgets(name, 50, stdin); 
 
             /*Search for a node.*/            
-            //name_search(pname, name);         
+            name_search(pname, name);         
         }
 
 
         /*If option is 4 (Number Search):*/                
         else if (option == 4) {          
             // scanf("%c", &temp); // temp statement to clear buffer
-            fflush(stdin);
+            clean_stdin();
             printf("Please enter the number: ");             
-            scanf("%s[^\n]", num);
+            fgets(nnum, 20, stdin)
 
             /*Search for a node.*/            
-            //num_search(pnum, num);         
+            num_search(pnum, num);         
         }
 
 
