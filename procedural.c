@@ -69,17 +69,18 @@ int main(void)
         if (option == 1) {            
 
             // scanf("%c", &temp); // temp statement to clear buffer
-            fflush(stdin);
-            printf("Please enter the name: ");             
+            
+            printf("Please enter the name: ");
+            fflush(stdin);     
             fgets(e.name, 50, stdin);
 
-            fflush(stdin);
-            printf("Please enter the phone number: ");             
+            printf("Please enter the phone number: ");
+            fflush(stdin);            
             fgets(e.phone, 30, stdin);             
 
             // scanf("%c", &temp); // temp statement to clear buffer
-            fflush(stdin);
-            printf("Please enter the address: ");             
+            printf("Please enter the address: ");   
+            fflush(stdin);          
             fgets(e.address, 50, stdin);
 
             /*Insert name*/           
