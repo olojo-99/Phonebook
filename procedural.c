@@ -2,6 +2,7 @@
 #include <string.h> 
 #include <stdlib.h>
 
+
 /*Create phone book entry structure.*/
 typedef struct pbentry {   
     char name[50];  
@@ -26,7 +27,7 @@ struct tree_node *create_node (struct tree_node *q, struct tree_node *r, Entry e
 // struct tree_node *delete_name (struct tree_node *p, char n[]);
 // struct tree_node *delete_num (struct tree_node *p, unsigned long n);
 struct tree_node *findmin(struct tree_node *p);
-
+void clear_stdin(void);
 // unsigned long name_search(struct tree_node *p, char n[]);
 // void num_search(struct tree_node *p, unsigned long n);
 
@@ -71,16 +72,16 @@ int main(void)
             // scanf("%c", &temp); // temp statement to clear buffer
             
             printf("Please enter the name: ");
-            fflush(stdin);     
+            clean_stdin();   
             fgets(e.name, 50, stdin);
 
             printf("Please enter the phone number: ");
-            fflush(stdin);            
+            clean_stdin();           
             fgets(e.phone, 30, stdin);             
 
             // scanf("%c", &temp); // temp statement to clear buffer
             printf("Please enter the address: ");   
-            fflush(stdin);          
+            clean_stdin();         
             fgets(e.address, 50, stdin);
 
             /*Insert name*/           
@@ -548,4 +549,12 @@ struct tree_node *test(struct tree_node *nametree, struct tree_node *numtree, En
     }
 
     return nametree;
+}
+
+void clean_stdin(void)
+{
+    int c;
+    do {
+        c = getchar();
+    } while (c != '\n' && c != EOF);
 }
