@@ -449,7 +449,7 @@ void print_tree(struct tree_node *p) {
 
 struct tree_node **test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
     FILE * fp;
-    struct tree_node *pointer_array[2];
+    struct tree_node **pointer_array = malloc(sizeof(struct tree_node) * 2);
     char * line;
     size_t len = 0;
     ssize_t read;
