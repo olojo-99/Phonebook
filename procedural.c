@@ -5,7 +5,7 @@
 /*Create phone book entry structure.*/
 typedef struct pbentry {   
     char name[50];  
-    unsigned long phone;
+    char phone[30];
     char address[30];
 }Entry;
 
@@ -74,7 +74,7 @@ int main(void)
             scanf("%s[^\n]", e.name);
 
             printf("Please enter the phone number: ");             
-            scanf("%lu[^\n]", &e.phone);             
+            scanf("%s[^\n]", &e.phone);             
 
             // scanf("%c", &temp); // temp statement to clear buffer
             fflush(stdin);
@@ -530,7 +530,7 @@ struct tree_node *test(struct tree_node *nametree, struct tree_node *numtree, En
         printf("copying name: %s\n", names[i]);
         strcpy(e.name, names[i]);
         printf("Copying num: %s\n", nums[i]);
-        e.phone = atoi(nums[i]);
+        strcpy(e.phone, nums[i]);
         printf("Copying add: %s\n", addresses[i]);
         strcpy(e.address, addresses[i]);
         nametree = name_insert(nametree, e);
