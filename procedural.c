@@ -23,12 +23,12 @@ struct tree_node *name_insert(struct tree_node *p, Entry e);
 struct tree_node *num_insert(struct tree_node *p, Entry e); 
 
 struct tree_node *create_node (struct tree_node *q, struct tree_node *r, Entry e); 
-struct tree_node *delete_name (struct tree_node *p, char n[]);
-struct tree_node *delete_num (struct tree_node *p, unsigned long n);
+// struct tree_node *delete_name (struct tree_node *p, char n[]);
+// struct tree_node *delete_num (struct tree_node *p, unsigned long n);
 struct tree_node *findmin(struct tree_node *p);
 
-unsigned long name_search(struct tree_node *p, char n[]);
-void num_search(struct tree_node *p, unsigned long n);
+// unsigned long name_search(struct tree_node *p, char n[]);
+// void num_search(struct tree_node *p, unsigned long n);
 
 void print_tree(struct tree_node *p);
 
@@ -100,13 +100,13 @@ int main(void)
             scanf("%s[^\n]", name);
 
             /* Find num associated with name */
-            num = name_search(pname, name);        
+            //num = name_search(pname, name);        
 
             /*Delete a node from name tree*/            
-            pname = delete_name(pname, name);
+            //pname = delete_name(pname, name);
 
             /*Delete the associated num from num tree*/
-            pnum = delete_num(pnum, num);
+            //pnum = delete_num(pnum, num);
         }
 
 
@@ -118,7 +118,7 @@ int main(void)
             scanf("%s[^\n]", name); 
 
             /*Search for a node.*/            
-            name_search(pname, name);         
+            //name_search(pname, name);         
         }
 
 
@@ -130,7 +130,7 @@ int main(void)
             scanf("%lu", &num);
 
             /*Search for a node.*/            
-            num_search(pnum, num);         
+            //num_search(pnum, num);         
         }
 
 
