@@ -413,36 +413,36 @@ struct tree_node *findmin(struct tree_node *p)
 
 
 /*Searches for a node and retrieves data.*/
-void num_search(struct tree_node *p, unsigned long n) 
-{    
-    /*If entry is before root:*/    
-    if (p == NULL) {
-        printf("Member not found.\n");
-        return;
-    }
+// void num_search(struct tree_node *p, unsigned long n) 
+// {    
+//     /*If entry is before root:*/    
+//     if (p == NULL) {
+//         printf("Member not found.\n");
+//         return;
+//     }
 
-    if (n < p->data.phone) {         
-        /*Check before root.*/
-        num_search(p->left, n);
-    }
+//     if (n < p->data.phone) {         
+//         /*Check before root.*/
+//         num_search(p->left, n);
+//     }
 
-    /*If entry is after root:*/    
-    else if (n > p->data.phone) {
-        /*Check after root.*/       
-        num_search(p->right, n);
-    }
+//     /*If entry is after root:*/    
+//     else if (n > p->data.phone) {
+//         /*Check after root.*/       
+//         num_search(p->right, n);
+//     }
 
-    /*If entry is located:*/    
-    else if (n == p->data.phone) {
-        printf("%s, %lu, %s\n\n", p->data.name, p->data.phone, p->data.address); /*Print out*/
-    }
+//     /*If entry is located:*/    
+//     else if (n == p->data.phone) {
+//         printf("%s, %lu, %s\n\n", p->data.name, p->data.phone, p->data.address); /*Print out*/
+//     }
 
-    /*If entry is not found:*/   
-    else {      
-        /*Error.*/       
-        printf("Record could not be found.\n\n");
-    }
-}
+//     /*If entry is not found:*/   
+//     else {      
+//         /*Error.*/       
+//         printf("Record could not be found.\n\n");
+//     }
+// }
 
 
 
