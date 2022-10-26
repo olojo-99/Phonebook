@@ -1,486 +1,420 @@
 import java.util.Scanner;
 
-// node class used in both trees
-class node
-{
-    node left;
-    node right;
+// Node class
+class Node {
     String name;
-    int num;
-    String address;
+    String addr;
+    String number;
+    Node left;
+    Node right;
 
-    // node can be accessed in other classes
-    public node(String name, int num, String addr)
-    {
+    public Node(String name, String addr, String number) { // Node constructor
+        this.name = name;
+        this.addr = addr;
+        this.number = number;
         left = null;
         right = null;
-        this.name = name;
-        this.num = num;
-        this.address = addr;
     }
 }
 
 
-// creates class that sorts based on names
-class nameTree
-{
-    Scanner in = new Scanner(System.in).useDelimiter("\n1"); // scanner object for input
-    public static node root;
-    String name;
-    int num;
-    String addr;
+// binary tree class
+class BinaryTree {
+    public Node root; // creates a node that contains contact info and children
 
-    nameTree()
-    {
-        root = null;
-    }
-
-    // method to insert a number into the phonebook
-    public void insert() {
-        Scanner in = new Scanner(System.in).useDelimiter("\n"); // new Scanner instance pointing to input stream
-        int flag = 0; // integer flag
-        int character; // user input char
-        node pointer, checker;
-
-        do {
-            System.out.println("\n Enter a name: "); // prompt user to enter a name
-            name = in.next();
-
-            System.out.println("\n Enter a phone number: "); // prompt user to enter a phone number
-            num = in.nextInt();
-
-            checker = root;
-
-            // search if the number is already in the tree
-            while (checker != null) { // while any has a value
-                if (checker.num == num) { // compareTo() will return 0 if the two numbers are the same
-                    flag = 1; // used to indicate numbers are the same
-                    break;
-                }
-                else if (checker.num > num) { // compareTo() will return something less than 0 if the string is smaller than num
-                    checker = checker.left; // check the left of the tree
-                }
-                else {
-                    checker = checker.right; // check the right of the tree
-                }
-            }
-
-            if (flag == 1) { // if number is already in the tree
-                System.out.println("\n This num is already in the phonebook, please enter a different num."); // print this error message
-                num = in.nextInt(); // user enters a different number
-            }
-
-            System.out.println("\n Enter an address: "); // prompt user to enter an address
-            addr = in.next();
-
-            node temp = new node(name, num, addr);
-            if (root == null) {
-                root = temp;
-            } else {
-                pointer = root;
-                while (flag == 0) {
-                    if ((temp.name).compareTo(pointer.name) > 0) {
-                        if (pointer.right != null) {
-                            pointer = pointer.right;
-                        } else {
-                            pointer.right = temp;
-                            flag = 1;
-                        }
-                    }
-                    if ((temp.name).compareTo(pointer.name) < 0) {
-                        if (pointer.left != null) {
-                            pointer = pointer.left;
-                        } else {
-                            pointer.left = temp;
-                            flag = 1;
-                        }
-                    }
-                }
-            }
-
-            flag = 0;
-            System.out.println("Do you want to add another?(0/1)"); // asks user if they want to add another number
-            character = in.nextInt();
-        }while(character == 1);
-    }
-
-    // search method
-    public void search()
-    {
-        int flag = 0;
-        node pointer;
-        System.out.println("\nEnter a name to be searched: "); // asks user to enter a name
-        String key = in.next();
-        pointer = root;
-        while(pointer != null)
-        {
-            if((pointer.name).compareTo(key) == 0) // if pointer.name and key are the same
-            {
-                flag = 1;
-                System.out.println("Person Found"); // inform user person has been found
-                System.out.println("" + pointer.name + "\t" + pointer.num + "\t" + pointer.address); // prints the name number and address of that person
-                break;
-            }
-            if((pointer.name).compareTo(key) > 0)
-            {
-                pointer = pointer.left;
-            }
-            else
-            {
-                pointer = pointer.right;
-            }
-        }
-        if(flag == 0) //  if the person they search for does not exist
-        {
-            System.out.println("Person Not Found"); // print this error message
-        }
-    }
-
-
-    // delete method
-    public void delete()
-    {
-        int flag = 0;
-        node pointer = null;
-        node parent = null;
-        System.out.println("Enter the name of a contact you would like to delete:"); // asks user to input name of contact they want to delete
-        Scanner in = new Scanner(System.in);
-        String key = in.next();
-        pointer = root;
-        while(pointer != null)
-        {
-            if((pointer.name).compareTo(key) == 0) // checks to see if name is in the tree
-            {
-                flag = 1;
-                break;
-            }
-            if((pointer.name).compareTo(key) > 0) // if name is not in the tree and less than key
-            {
-                parent = pointer;
-                pointer = pointer.left; // put to left of tree
-            }
-            else
-            {
-                parent = pointer;
-                pointer = pointer.right; //  put to right of tree
-            }
-        }
-        System.out.println(pointer.name);
-        if(flag == 1)
-        {
-            if(pointer.left != null && pointer.right == null)
-            {
-                if(parent.left == pointer)
-                {
-                    parent.left = pointer.left;
-                }
-                else
-                {
-                    parent.right = pointer.left;
-                }
-            }
-            if(pointer.left == null && pointer.right != null)
-            {
-                if(parent.left == pointer)
-                {
-                    parent.left = pointer.right;
-                }
-                else
-                {
-                    parent.right = pointer.right;
-                }
-            }
-            if(pointer.left != null && pointer.right != null)
-            {
-                node p;
-                p = pointer.left;
-                System.out.println("pointer= " + pointer.name);
-                while(p.right != null)
-                {
-                    parent = p;
-                    p = p.right;
-                }
-                pointer.name = p.name;
-                pointer.num = p.num;
-                if(p.left != null)
-                {
-                    parent.right = p.left;
-                }
-                else
-                {
-                    pointer.left= null;
-                }
-            }
-            if(pointer.left == null && pointer.right == null)
-            {
-                if(parent.left == pointer)
-                {
-                    parent.left = null;
-                }
-                else
-                {
-                    parent.right = null;
-                }
-            }
-        }
-    }
-
-}
-
-
-
-// creates class that sorts based on numbers
-class numTree
-{
-    Scanner in = new Scanner(System.in);
-    public static node root;
-    String name;
-    int num;
-    String addr;
-    int character;
-
-    numTree()
-    {
+    BinaryTree() {
         root = null;
     }
 
 
-    // method to insert a number into the phonebook
-    public void insert() {
-        Scanner in = new Scanner(System.in).useDelimiter("\n"); // separate inputs based on newline
-        int flag = 0; // initialises an integer flag = 0
-        int character;
-        node pointer, any;
+    // add records sorted by name
+    public void nameInsert(String name, String addr, String number){
+        int i = 0; // used for traversing tree
+        Node temp = new Node(name, addr, number);
 
-        do {
-            System.out.println("\n Enter a name: "); // asks user to enter a name
-            name = in.next();
-            System.out.println("\n Enter a phone number: "); // asks user to enter a phone number
-            num = in.nextInt();
-            any = root;
+        if (root == null) {
+            root = temp;
+        }
 
-            while (any != null) { // while any has a value
-                if (any.num == num) { // compareTo() will return 0 if the two numbers are the same
-                    flag = 1; // will be used in the if statement below
-                    break;
+        else {
+            // loop until null node is found
+            while (i == 0) {
+                if ((temp.name).compareTo(root.name) > 0) {
+                    if (root.right != null) { // if right child has a node
+                        root = root.right;
+                    }
+
+                    else {
+                        root.right = temp; // set the null node to the input node
+                        i = 1; // exit loop
+                    }
                 }
-                if (any.num > num) { // compareTo() will return something less than 0 if the string is smaller than num
-                    any = any.left; // puts num to left of the tree
-                }
-                else {
-                    any = any.right; // puts num to the right of the tree
+
+                if (((temp.name).compareTo(root.name) < 0)) {
+                    if (root.left != null) {
+                        root = root.left;
+                    }
+
+                    else {
+                        root.left = temp;
+                        i = 1;
+                    }
                 }
             }
+        }
+    }
 
-            if (flag == 1) { // if two numbers are the same
-                System.out.println("\n This num is already in the phonebook, please enter a different num."); // print this error message
-                num = in.nextInt(); // user enters a different number
+
+    // Searching by number rather than name
+    public void numInsert(String name, String addr, String number){
+        int i = 0;
+        Node temp = new Node(name, addr, number);
+
+        if (root == null) {
+            root = temp;
+        }
+
+        else {
+            while (i == 0) {
+                if ((temp.number).compareTo(root.number) > 0) {
+                    if (root.right != null) {
+                        root = root.right;
+                    }
+
+                    else {
+                        root.right = temp;
+                        i = 1;
+                    }
+                }
+
+                if (((temp.number).compareTo(root.number) < 0)) {
+                    if (root.left != null) {
+                        root = root.left;
+                    }
+
+                    else {
+                        root.left = temp;
+                        i = 1;
+                    }
+                }
+            }
+        }
+    }
+
+
+    // Searches the name tree for contact name
+    public void searchName(String name) {
+        int i = 0;
+
+        // loop until end of tree
+        while (root != null){
+            if (root.name.compareTo(name) == 0) {
+                i = 1;
+                System.out.println("\nRECORD FOUND");
+
+                System.out.println("NAME | ADDRESS | NUMBER");
+                System.out.println(root.name + " | " + root.addr + " | " + root.number);
+
+                break;
             }
 
-            System.out.println("\n Enter an address: "); // asks user to enter an address
-            addr = in.next();
-
-            node temp = new node(name, num, addr);
-            if (root == null) {
-                root = temp;
+            if ((root.name).compareTo(name) > 0) { // if the name does not match but has a value less than the current name it goes left
+                root = root.left;
             }
+
+            else { // if it has a greater value it goes right
+                root = root.right;
+            }
+        }
+
+        if (i == 0){ // if the while loop breaks and no record has been found returns "Record not found" to the user
+            System.out.println("RECORD NOT FOUND");
+        }
+    }
+
+
+    // Searches tree for contact number
+    public void searchNum(String num){
+        int i = 0;
+        while (root != null){
+            if (root.number.compareTo(num) == 0) { // works the same as searchName but compares the numbers rather than the names
+                i = 1;
+                System.out.println("\nRECORD FOUND");
+
+                System.out.println("NAME | ADDRESS | NUMBER");
+                System.out.println(root.name + " | " + root.addr + " | " + root.number);
+
+                break;
+            }
+            if ((root.number).compareTo(num) > 0) {
+                root = root.left;
+            }
+
             else {
-                pointer = root;
-                while (flag == 0) {
-                    if (temp.num > pointer.num) {
-                        if (pointer.right != null) {
-                            pointer = pointer.right;
-                        }
-                        else {
-                            pointer.right = temp;
-                            flag = 1;
-                        }
-                    }
-                    if (temp.num < pointer.num) {
-                        if (pointer.left != null) {
-                            pointer = pointer.left;
-                        }
-                        else {
-                            pointer.left = temp;
-                            flag = 1;
-                        }
-                    }
-                }
-            }
-            flag = 0;
-            System.out.println("Do you want to add another?(0/1)"); // asks user if they want to add another number
-            character = in.nextInt();
-        }while(character == 1);
-    }
-
-
-    // search method
-    public void search()
-    {
-        int flag = 0;
-        node pointer;
-        System.out.println("\nEnter a number to be searched: "); // asks user to enter a name
-        int key = in.nextInt();
-        pointer = root;
-
-        while(pointer != null)
-        {
-            if(pointer.num == key) // if pointer.num and key are the same
-            {
-                flag = 1;
-                System.out.println("Person Found"); // inform user person has been found
-                System.out.println("\t" + pointer.name + "\t" + pointer.num + "\t" + pointer.address); // prints the name number and address of that person
-                break;
-            }
-            if(pointer.num > key)
-            {
-                pointer = pointer.left;
-            }
-            else
-            {
-                pointer = pointer.right;
+                root = root.right;
             }
         }
-        if(flag == 0) //  if the person they search for does not exist
-        {
-            System.out.println("Person Not Found"); // print this error message
+
+        if (i == 0){
+            System.out.println("RECORD NOT FOUND");
         }
     }
 
-    // delete method
-    public void delete()
-    {
-        int flag = 0;
-        node pointer = null;
-        node parent = null;
-        System.out.println("Enter the number of a contact you would like to delete:");
-        Scanner in = new Scanner(System.in);
-        int key = in.nextInt();
-        pointer = root;
 
-        while(pointer != null)
-        {
-            if(pointer.num == key) // checks to see if name is in the tree
-            {
-                flag = 1;
+    // delete contact name from tree
+    public void deleteName(String name){
+        int i = 0;
+
+        Node current, previous = null;
+        current = root;
+
+        while (current != null) { // iterate until end of tree
+            if ((current.name).compareTo(name) > 0) {
+                previous = current;
+                current = current.left;
+            }
+
+            else if ((current.name).compareTo(name) < 0) {
+                previous = current;
+                current = current.right;
+            }
+
+            if ((current.name).compareTo(name) == 0) {
+                i = 1; // exit loop if found
                 break;
-            }
-            if(pointer.num > key) // if name is not in the tree and less than key
-            {
-                parent = pointer;
-                pointer = pointer.left; // put to left of tree
-            }
-            else
-            {
-                parent = pointer;
-                pointer = pointer.right; //  put to right of tree
             }
         }
 
-        System.out.println(pointer.name);
-        if(flag == 1)
-        {
-            if(pointer.left != null && pointer.right == null)
-            {
-                if(parent.left == pointer)
-                {
-                    parent.left = pointer.left;
+        // found node
+        if (i == 1){
+            if (current.left != null && current.right == null) { // left children check for node
+
+                // left of parent node
+                if (previous.left == current) {
+                    previous.left = current.left; // set the parent node left child to current node left child
+                    current = null; // delete the current node
                 }
-                else
-                {
-                    parent.right = pointer.left;
-                }
-            }
-            if(pointer.left == null && pointer.right != null)
-            {
-                if(parent.left == pointer)
-                {
-                    parent.left = pointer.right;
-                }
-                else
-                {
-                    parent.right = pointer.right;
+
+                else {
+                    previous.right = current.left; // set the parent node right child to current node left child
+                    current = null;
                 }
             }
-            if(pointer.left != null && pointer.right != null)
-            {
-                node p;
-                p = pointer.left;
-                System.out.println("pointer= " + pointer.name);
-                while(p.right != null)
-                {
-                    parent = p;
+            if (current.left == null && current.right != null) { // checks if the node has right children
+                if (previous.left == current) {
+                    previous.left = current.right;
+                    current = null;
+                }
+
+                else {
+                    previous.right = current.right;
+                    current = null;
+                }
+            }
+            if (current.left != null && current.right != null) { // checks if the node has left and right children
+                Node p;
+                p = current.left;
+
+                while (p.right != null) {
+                    previous = p;
                     p = p.right;
                 }
-                pointer.name = p.name;
-                pointer.num = p.num;
-                if(p.left != null)
-                {
-                    parent.right = p.left;
+
+                current.name = p.name;
+                current.number = p.number;
+
+                if (p.left != null) {
+                    previous.right = p.left;
                 }
-                else
-                {
-                    pointer.left= null;
+
+                else {
+                    current.left = null;
                 }
             }
-            if(pointer.left == null && pointer.right == null)
-            {
-                if(parent.left == pointer)
-                {
-                    parent.left = null;
+            if (current.left == null && current.right == null) { // no children
+                if (previous.left == current) { // checks to see if the current node is left or right child
+                    previous.left = null; // delete node
                 }
-                else
-                {
-                    parent.right = null;
+
+                else {
+                    previous.right = null;
                 }
             }
         }
+
+        if (i == 0) {
+            System.out.println("RECORD NOT FOUND");
+        }
     }
 
+
+    // delete contact number from number tree
+    public void deleteNum(String search){
+        int i = 0;
+
+        Node current, previous = null;
+        current = root;
+
+        while (current != null) {
+            if ((current.number).compareTo(search) > 0) {
+                previous = current;
+                current = current.left;
+            }
+
+            else if ((current.number).compareTo(search) < 0) {
+                previous = current;
+                current = current.right;
+            }
+
+            if ((current.number).compareTo(search) == 0) {
+                i = 1;
+                break;
+            }
+        }
+
+        if (i == 1){
+            if (current.left != null && current.right == null) {
+                if (previous.left == current) {
+                    previous.left = current.left;
+                    current = null;
+                }
+
+                else {
+                    previous.right = current.left;
+                    current = null;
+                }
+            }
+            if (current.left == null && current.right != null) {
+                if (previous.left == current) {
+                    previous.left = current.right;
+                    current = null;
+                }
+
+                else {
+                    previous.right = current.right;
+                    current = null;
+                }
+            }
+            if (current.left != null && current.right != null) {
+                Node p;
+                p = current.left;
+
+                while (p.right != null) {
+                    previous = p;
+                    p = p.right;
+                }
+
+                current.name = p.name;
+                current.number = p.number;
+                if (p.left != null) {
+                    previous.right = p.left;
+                }
+
+                else {
+                    current.left = null;
+                }
+            }
+
+            if (current.left == null && current.right == null) {
+                if (previous.right == current) {
+                    previous.right = null;
+                }
+
+                else {
+                    previous.left = null;
+                }
+            }
+        }
+
+        if (i == 0) {
+            System.out.println("RECORD NOT FOUND");
+        }
+    }
+
+    public void inorder(Node root){ // prints out the binary tree in order
+        if(root != null){
+            inorder(root.left);
+            System.out.println(root.name + " " + root.addr + " " + root.number);
+            inorder(root.right);
+        }
+    }
+
+    public void display(){ // call inorder func during runtime for user without node arg
+        inorder(root);
+    }
 }
 
 
-// sell interface when you run the file in terminal
-public class phonebook
-{
-    public static void display(node root)
-    {
-        if(root != null)
-        {
-            display(root.left); // prints left side of the tree
-            System.out.println("" + root.name + "\t" + root.num + "\t" + root.address); // prints root of the tree
-            display(root.right); //  prints right side of the tree
-        }
-    }
+public class phonebook {
+    public static void main(String[] args) {
 
-    public static void main(String s[])
-    {
-        numTree bt = new numTree();
+        BinaryTree nameTree = new BinaryTree(); // creates the binary trees needed to store the information
+        BinaryTree numTree = new BinaryTree();
+        Scanner in = new Scanner(System.in); // creates a scanner to detect the users input
 
-        Scanner in = new Scanner(System.in);
-        int num;
-        int ch1;
-
+        int i, j;
         do {
-            System.out.println("\n1. Insert \n2. Search \n3. Delete \n4. Quit"); // asks user which function they would like to use
-            System.out.println("Enter your choice: ");
-            num = in.nextInt();
-            switch (num) {
-                case 1 -> {
-                    bt.insert();
-                    display(bt.root);
-                }
-                case 2 -> bt.search();
-                case 3 -> bt.delete();
-                case 4 -> {
-                    System.out.println("Exiting...");
+            System.out.println("\n 1. Add \n 2. Search Name \n 3. Search Number \n 4. Display Contacts \n 5. Delete Contact \n 6. Quit");
+            System.out.println("Choose an option");
+            Scanner userInput = new Scanner(System.in);
+
+            i = in.nextInt();
+            switch (i) {
+
+                case 1: // gets the user to enter a name to be searched
+                    System.out.println("\nEnter the Name: ");
+
+                    String insertName = userInput.nextLine();
+                    System.out.println("\nEnter the Address: ");
+
+                    String insertAddr = userInput.nextLine();
+                    System.out.println("\nEnter the Phone Number: ");
+
+                    String insertNum = userInput.nextLine();
+                    nameTree.nameInsert(insertName, insertAddr, insertNum);
+                    numTree.numInsert(insertName, insertAddr, insertNum);
+                    break;
+
+                case 2: // gets the user to enter a name, address, and number to create a new record in the system
+                    System.out.println("\nEnter the Name: ");
+                    String searchName = userInput.nextLine();
+                    nameTree.searchName(searchName);
+                    break;
+
+                case 3: // gets the user to enter a number to be searched
+                    System.out.println("\nEnter the Number: ");
+                    String searchNum = userInput.nextLine();
+                    numTree.searchNum(searchNum);
+                    break;
+
+                case 4: // prints out all records in the system
+                    System.out.println("NAMES |  ADDRESSES | NUMBERS");
+                    nameTree.display();
+                    break;
+
+                case 5: // gets the user to enter the name and number of the record that is to be deleted
+                    System.out.println("\nEnter the name to be removed");
+                    String deleteName = userInput.nextLine();
+
+                    System.out.println("\nEnter the associated number");
+                    String deleteNumber = userInput.nextLine();
+
+                    numTree.deleteNum(deleteNumber);
+                    nameTree.deleteName(deleteName);
+                    break;
+
+                case 6: // quits the program
+                    System.out.println("Quitting");
                     System.exit(0);
-                }
+
+                default:
+                    break;
             }
-            System.out.println("Do you want to continue?(0/1)");
-            ch1 = in.nextInt();
-        }
-        while(ch1==1);
+
+            System.out.println("");
+            System.out.println("Continue? (1 = Yes / 0 = No)");
+            j = in.nextInt();
+
+        } while (j==1);
     }
 }
-
