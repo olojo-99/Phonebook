@@ -157,7 +157,7 @@ int main(void)
         }
 
         else if (option == 7) {
-            struct tree_node *tree_pointers[2] = test(pname, pnum, e);
+            struct tree_node **tree_pointers = test(pname, pnum, e);
             pname = tree_pointers[0];
             pnum = tree_pointers[1];
         } 
