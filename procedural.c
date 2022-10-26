@@ -75,14 +75,17 @@ int main(void)
             printf("Please enter the name: ");
             clean_stdin();   
             fgets(e.name, 50, stdin);
+            // removing the trailing new line character from the string (IMPORTANT)
             e.name[strcspn(e.name, "\n")] = 0;
 
             printf("Please enter the phone number: ");             
-            fgets(e.phone, 20, stdin);             
+            fgets(e.phone, 20, stdin);
+            e.phone[strcspn(e.phone, "\n")] = 0;           
 
             // scanf("%c", &temp); // temp statement to clear buffer
             printf("Please enter the address: ");          
             fgets(e.address, 50, stdin);
+            e.address[strcspn(e.address, "\n")] = 0;
 
             /*Insert name*/           
             pname = name_insert(pname, e);
@@ -98,9 +101,10 @@ int main(void)
         /*If option is 2 (Delete):*/                
         else if (option == 2) {
             // scanf("%c", &temp); // temp statement to clear buffer
-            fflush(stdin);
+            clean_stdin();
             printf("Please enter the name: "); 
-            scanf("%s[^\n]", name);
+            fgets(name, 50, stdin);
+            name[strcspn(name, "\n")] = 0;
 
             /* Find num associated with name */
             char *contact_num = name_search(pname, name);
@@ -132,6 +136,7 @@ int main(void)
             clean_stdin();
             printf("Please enter the number: ");             
             fgets(num, 20, stdin);
+            num[strcspn(num, "\n")] = 0;
 
             /*Search for a node.*/            
             num_search(pnum, num);         
@@ -512,10 +517,13 @@ struct tree_node *test(struct tree_node *nametree, struct tree_node *numtree, En
     {
         printf("copying name: %s\n", names[i]);
         strcpy(e.name, names[i]);
+        e.name[strcspn(e.name, "\n")] = 0;
         printf("Copying num: %s\n", nums[i]);
         strcpy(e.phone, nums[i]);
+        e.phone[strcspn(e.phone, "\n")] = 0;
         printf("Copying add: %s\n", addresses[i]);
         strcpy(e.address, addresses[i]);
+        e.address[strcspn(e.address, "\n")] = 0;
         nametree = name_insert(nametree, e);
         numtree = num_insert(numtree, e);
     }
