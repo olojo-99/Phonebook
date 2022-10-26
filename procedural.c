@@ -496,9 +496,11 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
             name = line;
             printf("%s\n", name);
             names[pname] = name;
-            printf("index we are inserting into: %d\n", pname);
-            printf("name entered: %s\n", names[pname]);
-            printf("first name: %s\n", names[0]);
+            for (size_t r = 0; i <= pname; i++)
+            {
+                printf("name: %s index: %d\n", names[r], r);
+            }
+            
             pname++;
             // printf("%s", name); test code
         }
