@@ -75,13 +75,11 @@ int main(void)
             clean_stdin();   
             fgets(e.name, 50, stdin);
 
-            fflush(stdin);
             printf("Please enter the phone number: ");             
-            scanf("%[^\n]", e.phone);             
+            fgets(e.phone, 20, stdin);             
 
             // scanf("%c", &temp); // temp statement to clear buffer
-            printf("Please enter the address: ");   
-            //clean_stdin();         
+            printf("Please enter the address: ");          
             fgets(e.address, 50, stdin);
 
             /*Insert name*/           
@@ -370,11 +368,11 @@ char* name_search(struct tree_node *p, char n[])
         name_search(p->left, n);
     }
 
-//     /*If entry is after root:*/    
-//     else if (strcmp(n, p->data.name) > 0) {
-//         /*Check after root.*/       
-//         name_search(p->right, n);
-//     }
+    /*If entry is after root:*/    
+    else if (strcmp(n, p->data.name) > 0) {
+        /*Check after root.*/       
+        name_search(p->right, n);
+    }
 
     /*If entry is located:*/    
     else if (strcmp(n, p->data.name) == 0) {
@@ -382,11 +380,11 @@ char* name_search(struct tree_node *p, char n[])
         return p->data.phone;
     }
 
-//     /*If entry is not found:*/   
-//     else {      
-//         /*Error.*/       
-//         printf("Record could not be found.\n\n");
-//     }
+    /*If entry is not found:*/   
+    else {      
+        /*Error.*/       
+        printf("Record could not be found.\n\n");
+    }
 
     return "Member not found\n";
 }
@@ -403,10 +401,10 @@ void num_search(struct tree_node *p, char n[])
 
     }
 
-//     else if (strcmp(n, p->data.phone) < 0) {         
-//         /*Check before root.*/
-//         num_search(p->left, n);
-//     }
+    else if (strcmp(n, p->data.phone) < 0) {         
+        /*Check before root.*/
+        num_search(p->left, n);
+    }
 
     /*If entry is after root:*/    
     else if (strcmp(n, p->data.phone) > 0) {
@@ -416,7 +414,7 @@ void num_search(struct tree_node *p, char n[])
 
     /*If entry is located:*/    
     else if (strcmp(n, p->data.phone) == 0) {
-        printf("%s, %s, %s\n\n", p->data.name, p->data.phone, p->data.address); /*Print out*/
+        printf("%s%s%s\n\n", p->data.name, p->data.phone, p->data.address); /*Print out*/
     }
 
     /*If entry is not found:*/   
@@ -435,7 +433,7 @@ void print_tree(struct tree_node *p) {
         
         /*Print node data.*/        
         print_tree(p->left);        
-        printf("%s, %s, %s\n\n", p->data.name, p->data.phone, p->data.address);        
+        printf("%s%s%s\n\n", p->data.name, p->data.phone, p->data.address);        
         print_tree(p->right);
     }
 }
