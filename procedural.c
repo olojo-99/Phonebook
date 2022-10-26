@@ -189,13 +189,13 @@ struct tree_node *num_insert(struct tree_node *p, Entry e)
     }
 
     /*If there is a root, and the entry belongs before the root:*/    
-    else if (strcmp(e.name, p->data.name) < 0) {      
+    else if (strcmp(e.phone, p->data.phone) < 0) {      
         /*Add before root.*/       
         p->left = num_insert(p->left, e);     
     }
 
     /*If there is a root, and the entry belongs after the root:*/    
-    else if (strcmp(e.name, p->data.name) > 0) {    
+    else if (strcmp(e.phone, p->data.phone) > 0) {    
         /*Add after root.*/    
         p->right = num_insert(p->right, e);   
     }
