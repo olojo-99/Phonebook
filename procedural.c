@@ -34,7 +34,7 @@ void num_search(struct tree_node *p, char n[]);
 void print_tree(struct tree_node *p);
 void clean_stdin(void);
 
-struct tree_node *test(struct tree_node *nametree, struct tree_node *numtree, Entry e);
+struct tree_node **test(struct tree_node *nametree, struct tree_node *numtree, Entry e);
 
 
 // Main function
@@ -157,8 +157,9 @@ int main(void)
         }
 
         else if (option == 7) {
-            struct tree_node *new_pname = test(pname, pnum, e);
-            pname = new_pname;
+            struct tree_node *tree_pointers[2] = test(pname, pnum, e);
+            pname = tree_pointers[0];
+            pnum = tree_pointers[1];
         } 
 
 
@@ -446,8 +447,9 @@ void print_tree(struct tree_node *p) {
     }
 }
 
-struct tree_node *test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
+struct tree_node **test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
     FILE * fp;
+    struct tree_node *pointer_array[2];
     char * line;
     size_t len = 0;
     ssize_t read;
@@ -529,7 +531,8 @@ struct tree_node *test(struct tree_node *nametree, struct tree_node *numtree, En
     num_search(numtree, "456");
     print_tree(numtree);
     
-    
+    pointer_array[0] = nametree;
+    pointer_array[1] = numtree;
 
     fclose(fp);
     if(line){
