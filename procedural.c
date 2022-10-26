@@ -497,6 +497,7 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
             printf("%s\n", name);
             names[pname] = name;
             printf("name entered: %s\n", names[pname]);
+            printf("first name: %s\n", names[0]);
             pname++;
             // printf("%s", name); test code
         }
