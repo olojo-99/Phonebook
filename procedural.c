@@ -520,6 +520,9 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
 
         j++;
         printf("name1: %s\n\n", names[0]);
+        printf("num1: %s\n\n", nums[0]);
+        printf("add1: %s\n\n", addresses[0]);
+        // found issue it overwrite name
     }
     
     for (int i = 0; i < 6; i++)
