@@ -403,23 +403,19 @@ char* name_search(struct tree_node *p, char n[])
 /*Searches for a node and retrieves data.*/
 void num_search(struct tree_node *p, char n[]) 
 {   
-    printf("this is the root num %s\n", p->data.phone);
     if (p == NULL){
         printf("Member not found.\n");
         return;
-
     }
 
     else if (strcmp(n, p->data.phone) < 0) {         
         /*Check before root.*/
-        printf("going left\n");
         num_search(p->left, n);
     }
 
     /*If entry is after root:*/    
     else if (strcmp(n, p->data.phone) > 0) {
-        /*Check after root.*/
-        printf("going right \n");       
+        /*Check after root.*/     
         num_search(p->right, n);
     }
 
