@@ -475,9 +475,9 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
     char * num;
     char * address;
 
-    char *names[6];
-    char *nums[6];
-    char *addresses[6];
+    char *names[7];
+    char *nums[7];
+    char *addresses[7];
 
     //open test data file
     fp = fopen("test_data.txt", "r");
