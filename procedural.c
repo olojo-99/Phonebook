@@ -493,9 +493,9 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
         
         //name line
         if (line[strlen(line) -1] == '\n'){
-            line[strlen(line) -1] = "";
+            line[strlen(line) -1] = '\0';
         }
-        
+
         if(j % 3 == 0  && j < 17) {
             name = line;
             names[pname] = strdup(name);            
