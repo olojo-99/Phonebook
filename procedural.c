@@ -541,7 +541,7 @@ struct tree_node **test(struct tree_node *nametree, struct tree_node *numtree, E
 
     
 
-    return nametree;
+    return pointer_array;
 }
 
 void clean_stdin(void)
