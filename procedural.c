@@ -422,7 +422,7 @@ void num_search(struct tree_node *p, char n[])
 
     /*If entry is located:*/    
     else if (strcmp(n, p->data.phone) == 0) {
-        printf("%s%s%s\n\n", p->data.name, p->data.phone, p->data.address); /*Print out*/
+        printf("%s, %s, %s\n\n", p->data.name, p->data.phone, p->data.address); /*Print out*/
     }
 
     /*If entry is not found:*/   
@@ -441,7 +441,7 @@ void print_tree(struct tree_node *p) {
         
         /*Print node data.*/        
         print_tree(p->left);        
-        printf("%s%s%s\n\n", p->data.name, p->data.phone, p->data.address);        
+        printf("%s, %s, %s\n\n", p->data.name, p->data.phone, p->data.address);        
         print_tree(p->right);
     }
 }
