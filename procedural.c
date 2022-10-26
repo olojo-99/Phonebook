@@ -368,7 +368,7 @@ char* name_search(struct tree_node *p, char n[])
 {    
     // char res[] = "Member not found\n";
     /*If entry is before root:*/    
-    if (p == NULL) {
+    if (p != NULL) {
         return "Member not found\n";
     }
 
