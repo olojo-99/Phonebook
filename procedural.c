@@ -403,6 +403,7 @@ char* name_search(struct tree_node *p, char n[])
 /*Searches for a node and retrieves data.*/
 void num_search(struct tree_node *p, char n[]) 
 {   
+    printf("%s\n", &p->data.phone);
     if (p == NULL){
         printf("Member not found.\n");
         return;
