@@ -510,6 +510,10 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
             num = line;
             nums[pnum] = num;
             printf("num entered: %s\n", nums[pnum]);
+            for (int r = 0; r <= pname; r++)
+            {
+                printf("name: %s index: %d\n", names[r], r);
+            }
             pnum++;
             // printf("%s", num);
         }
@@ -519,6 +523,10 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
             address = line;
             addresses[padd] = address;
             printf("address entered: %s\n", addresses[padd]);
+            for (int r = 0; r <= pname; r++)
+            {
+                printf("name: %s index: %d\n", names[r], r);
+            }
             padd++;
             // printf("%s", address);
         }
