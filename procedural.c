@@ -32,7 +32,7 @@ void num_search(struct tree_node *p, unsigned long n);
 
 void print_tree(struct tree_node *p);
 
-void test(struct tree_node *nametree, struct tree_node *numtree, Entry e);
+struct tree_node *test(struct tree_node *nametree, struct tree_node *numtree, Entry e);
 
 
 // Main function
@@ -147,7 +147,7 @@ int main(void)
         }
 
         else if (option == 7) {
-            test(pname, pnum, e);
+            struct tree_node *new_pname = test(pname, pnum, e);
         } 
 
 
@@ -457,7 +457,7 @@ void print_tree(struct tree_node *p) {
     }
 }
 
-void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
+struct tree_node *test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
     FILE * fp;
     char * line;
     size_t len = 0;
@@ -491,7 +491,7 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
     while((read = getline(&line, &len, fp)) != -1){
         // printf("%s", line); //used to test file contents
         
-        //name line
+        // removing newline char at end of line
         if (line[strlen(line) -1] == '\n'){
             line[strlen(line) -1] = '\0';
         }
@@ -543,4 +543,6 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
     if(line){
         free(line);
     }
+
+    return nametree;
 }
