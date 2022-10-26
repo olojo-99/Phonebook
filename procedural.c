@@ -402,7 +402,7 @@ char* name_search(struct tree_node *p, char n[])
 /*Searches for a node and retrieves data.*/
 void num_search(struct tree_node *p, char n[]) 
 {   
-    /*If entry is before root:*/    
+      
     if (p == NULL) {
         printf("Member not found.\n");
         return;
@@ -526,14 +526,17 @@ struct tree_node *test(struct tree_node *nametree, struct tree_node *numtree, En
     }
 
     // print_tree(nametree);
+    num_search(numtree, "456");
     print_tree(numtree);
+    
     
 
     fclose(fp);
     if(line){
         free(line);
     }
-    num_search(numtree, "456");
+
+    
 
     return nametree;
 }
