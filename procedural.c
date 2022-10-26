@@ -118,7 +118,8 @@ int main(void)
             // scanf("%c", &temp); // temp statement to clear buffer
             clean_stdin();
             printf("Please enter the name: ");             
-            fgets(name, 50, stdin); 
+            fgets(name, 50, stdin);
+            name[strcspn(name, "\n")] = 0;
 
             /*Search for a node.*/            
             name_search(pname, name);         
