@@ -73,6 +73,7 @@ int main(void)
             printf("Please enter the name: ");             
             fgets(e.name, 50, stdin);
 
+            fflush(stdin);
             printf("Please enter the phone number: ");             
             fgets(e.phone, 30, stdin);             
 
