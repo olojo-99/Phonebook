@@ -148,6 +148,7 @@ int main(void)
 
         else if (option == 7) {
             struct tree_node *new_pname = test(pname, pnum, e);
+            pname = new_pname;
         } 
 
 
