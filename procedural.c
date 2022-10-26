@@ -74,7 +74,7 @@ int main(void)
             scanf("%s[^\n]", e.name);
 
             printf("Please enter the phone number: ");             
-            scanf("%s[^\n]", &e.phone);             
+            scanf("%s[^\n]", e.phone);             
 
             // scanf("%c", &temp); // temp statement to clear buffer
             fflush(stdin);
@@ -376,39 +376,39 @@ struct tree_node *findmin(struct tree_node *p)
 
 
 /*Searches for a node and retrieves data.*/
-unsigned long name_search(struct tree_node *p, char n[]) 
-{    
-    /*If entry is before root:*/    
-    if (p == NULL) {
-        printf("Member not found.\n");
-        return 0;
-    }
+// unsigned long name_search(struct tree_node *p, char n[]) 
+// {    
+//     /*If entry is before root:*/    
+//     if (p == NULL) {
+//         printf("Member not found.\n");
+//         return 0;
+//     }
 
-    if (strcmp(n, p->data.name) < 0) {         
-        /*Check before root.*/
-        name_search(p->left, n);
-    }
+//     if (strcmp(n, p->data.name) < 0) {         
+//         /*Check before root.*/
+//         name_search(p->left, n);
+//     }
 
-    /*If entry is after root:*/    
-    else if (strcmp(n, p->data.name) > 0) {
-        /*Check after root.*/       
-        name_search(p->right, n);
-    }
+//     /*If entry is after root:*/    
+//     else if (strcmp(n, p->data.name) > 0) {
+//         /*Check after root.*/       
+//         name_search(p->right, n);
+//     }
 
-    /*If entry is located:*/    
-    else if (strcmp(n, p->data.name) == 0) {
-        printf("%s, %lu, %s\n\n", p->data.name, p->data.phone, p->data.address); /*Print out*/
-        return p->data.phone;
-    }
+//     /*If entry is located:*/    
+//     else if (strcmp(n, p->data.name) == 0) {
+//         printf("%s, %lu, %s\n\n", p->data.name, p->data.phone, p->data.address); /*Print out*/
+//         return p->data.phone;
+//     }
 
-    /*If entry is not found:*/   
-    else {      
-        /*Error.*/       
-        printf("Record could not be found.\n\n");
-    }
+//     /*If entry is not found:*/   
+//     else {      
+//         /*Error.*/       
+//         printf("Record could not be found.\n\n");
+//     }
 
-    return 0;
-}
+//     return 0;
+// }
 
 
 
