@@ -76,12 +76,12 @@ int main(void)
             fgets(e.name, 50, stdin);
 
             printf("Please enter the phone number: ");
-            clean_stdin();           
+            //clean_stdin();
             fgets(e.phone, 30, stdin);             
 
             // scanf("%c", &temp); // temp statement to clear buffer
             printf("Please enter the address: ");   
-            clean_stdin();         
+            //clean_stdin();         
             fgets(e.address, 50, stdin);
 
             /*Insert name*/           
