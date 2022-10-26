@@ -532,7 +532,7 @@ struct tree_node *test(struct tree_node *nametree, struct tree_node *numtree, En
     if(line){
         free(line);
     }
-    num_search(456);
+    num_search(numtree, "456");
 
     return nametree;
 }
