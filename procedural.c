@@ -515,13 +515,10 @@ struct tree_node *test(struct tree_node *nametree, struct tree_node *numtree, En
     
     for (int i = 0; i < 6; i++)
     {
-        printf("copying name: %s\n", names[i]);
         strcpy(e.name, names[i]);
         e.name[strcspn(e.name, "\n")] = 0;
-        printf("Copying num: %s\n", nums[i]);
         strcpy(e.phone, nums[i]);
         e.phone[strcspn(e.phone, "\n")] = 0;
-        printf("Copying add: %s\n", addresses[i]);
         strcpy(e.address, addresses[i]);
         e.address[strcspn(e.address, "\n")] = 0;
         nametree = name_insert(nametree, e);
