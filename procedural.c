@@ -27,7 +27,7 @@ struct tree_node *create_node (struct tree_node *q, struct tree_node *r, Entry e
 // struct tree_node *delete_name (struct tree_node *p, char n[]);
 // struct tree_node *delete_num (struct tree_node *p, unsigned long n);
 struct tree_node *findmin(struct tree_node *p);
-void clear_stdin(void);
+void clean_stdin(void);
 // unsigned long name_search(struct tree_node *p, char n[]);
 // void num_search(struct tree_node *p, unsigned long n);
 
