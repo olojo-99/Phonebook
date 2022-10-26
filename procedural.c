@@ -495,7 +495,7 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
         if(j % 3 == 0  && j < 17) {
             name = line;
             printf("%s\n", name);
-            names[pname] = name;
+            names[pname] = strdup(name);
             for (int r = 0; r <= pname; r++)
             {
                 printf("name: %s index: %d\n", names[r], r);
@@ -508,12 +508,8 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
         // number line
         else if(j % 3 == 1){
             num = line;
-            nums[pnum] = num;
+            nums[pnum] = strdup(num);
             printf("num entered: %s\n", nums[pnum]);
-            for (int r = 0; r <= pname; r++)
-            {
-                printf("name: %s index: %d\n", names[r], r);
-            }
             pnum++;
             // printf("%s", num);
         }
@@ -521,12 +517,8 @@ void test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
         //address line
         else if(j % 3 == 2){
             address = line;
-            addresses[padd] = address;
+            addresses[padd] = strdup(address);
             printf("address entered: %s\n", addresses[padd]);
-            for (int r = 0; r <= pname; r++)
-            {
-                printf("name: %s index: %d\n", names[r], r);
-            }
             padd++;
             // printf("%s", address);
         }
