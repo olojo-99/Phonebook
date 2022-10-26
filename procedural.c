@@ -32,6 +32,7 @@ char* name_search(struct tree_node *p, char n[]);
 void num_search(struct tree_node *p, char n[]);
 
 void print_tree(struct tree_node *p);
+void clean_stdin(void);
 
 struct tree_node *test(struct tree_node *nametree, struct tree_node *numtree, Entry e);
 
