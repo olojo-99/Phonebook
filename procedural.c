@@ -75,6 +75,7 @@ int main(void)
             printf("Please enter the name: ");
             clean_stdin();   
             fgets(e.name, 50, stdin);
+            e.name[strcspn(e.name, "\n")] = 0;
 
             printf("Please enter the phone number: ");             
             fgets(e.phone, 20, stdin);             
@@ -129,7 +130,7 @@ int main(void)
             // scanf("%c", &temp); // temp statement to clear buffer
             fflush(stdin);
             printf("Please enter the number: ");             
-            scanf("%[^\n]", num);
+            scanf("%d[^\n]", num);
 
             /*Search for a node.*/            
             //num_search(pnum, num);         
