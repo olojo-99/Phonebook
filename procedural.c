@@ -258,6 +258,8 @@ struct tree_node *create_node (struct tree_node *q, struct tree_node *r, Entry e
 struct tree_node *delete_name(struct tree_node *p, char n[])
 {
     // empty node
+    struct tree_node *new_p = malloc(sizeof(struct tree_node));
+    new_p = NULL;
     if (p == NULL) {
         return NULL;
     }
@@ -276,9 +278,10 @@ struct tree_node *delete_name(struct tree_node *p, char n[])
         p->right = delete_name(p->right, n);    
     }
 
-    // node to be deleted
-    else {
+    // node found
+    else if (strcmp(n, p->data.name) == 0) {
         // node with one or no child
+        new_p = p;
         if (p->left == NULL) {
             struct tree_node *tmp = p->right;
             free(p);
@@ -304,7 +307,7 @@ struct tree_node *delete_name(struct tree_node *p, char n[])
         p->right = delete_name(p->right, tmp->data.name);
 
     }
-    return p;
+    return new_p;
 }
 
 
