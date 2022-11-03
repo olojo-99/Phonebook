@@ -126,7 +126,8 @@ int main(void)
             name[strcspn(name, "\n")] = 0;
 
             /*Search for a node.*/            
-            struct tree_node *p = name_search(pname, name);
+            struct tree_node *p = malloc(sizeof(struct tree_node));
+            p = name_search(pname, name);
             // for some reason this returns null
             printf("%s\n", p->data.phone);
             if (p){
