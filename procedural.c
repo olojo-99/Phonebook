@@ -313,8 +313,8 @@ struct tree_node *create_node (struct tree_node *q, struct tree_node *r, Entry e
 
 struct tree_node *delete_name(struct tree_node *p, char *name) {
     // based on code found at https://www.geeksforgeeks.org/deletion-in-binary-search-tree/
-    struct tree_node *root = malloc(sizeof(struct tree_node));
-    root = p; 
+    // struct tree_node *root = malloc(sizeof(struct tree_node));
+    // root = p; 
     if (p == NULL) {
         return p;
     }
@@ -336,13 +336,13 @@ struct tree_node *delete_name(struct tree_node *p, char *name) {
         if (p->left == NULL) {
             struct tree_node *tmp = p->right;
             free(p);
-            return root;
+            return tmp;
         }
 
         else if (p->right == NULL) {
             struct tree_node *tmp = p->left;
             free(p);
-            return root;
+            return tmp;
         }
 
         // node with 2 children 
@@ -352,13 +352,13 @@ struct tree_node *delete_name(struct tree_node *p, char *name) {
         p->data = tmp->data;
         p->right = delete_name(p->right, tmp->data.name);
     }
-    return root;
+    return p;
 }
 
 struct tree_node *delete_num(struct tree_node *p, char *num) {
     // based on code found at https://www.geeksforgeeks.org/deletion-in-binary-search-tree/
-    struct tree_node *root = malloc(sizeof(struct tree_node));
-    root = p; 
+    // struct tree_node *root = malloc(sizeof(struct tree_node));
+    // root = p; 
     if (p == NULL) {
         return p;
     }
@@ -380,13 +380,13 @@ struct tree_node *delete_num(struct tree_node *p, char *num) {
         if (p->left == NULL) {
             struct tree_node *tmp = p->right;
             free(p);
-            return root;
+            return tmp;
         }
 
         else if (p->right == NULL) {
             struct tree_node *tmp = p->left;
             free(p);
-            return root;
+            return tmp;
         }
 
         // node with 2 children 
@@ -396,7 +396,7 @@ struct tree_node *delete_num(struct tree_node *p, char *num) {
         p->data = tmp->data;
         p->right = delete_name(p->right, tmp->data.phone);
     }
-    return root;
+    return p;
 }
 
 // struct tree_node *delete_num(struct tree_node *p, char n[])
