@@ -107,13 +107,13 @@ int main(void)
             name[strcspn(name, "\n")] = 0;
 
             /* Find num associated with name */
-            char *contact_num = name_search(pname, name);
+            struct tree_node *p = name_search(pname, name);
 
             /*Delete a node from name tree*/ 
             pname = delete_name(pname, name);
 
             /*Delete the associated num from num tree*/
-            pnum = delete_num(pnum, contact_num);
+            pnum = delete_num(pnum, p->data.phone);
         }
 
 
