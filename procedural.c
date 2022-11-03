@@ -110,7 +110,7 @@ int main(void)
             struct tree_node *p = name_search(pname, name);
 
             /*Delete a node from name tree*/ 
-            pname = delete_name(pname, name);
+            pname = delete_name(pname, p->data.name);
 
             /*Delete the associated num from num tree*/
             pnum = delete_num(pnum, p->data.phone);
@@ -255,87 +255,82 @@ struct tree_node *create_node (struct tree_node *q, struct tree_node *r, Entry e
 }
 
 
-struct tree_node *delete_name(struct tree_node *p, char n[])
-{
-    // empty node
-    struct tree_node *new_p = malloc(sizeof(struct tree_node));
-    new_p = NULL;
-    if (p == NULL) {
-        return NULL;
-    }
+// struct tree_node *delete_name(struct tree_node *p, struct tree_node *num_tree, char n[])
+// {
+//     // empty node
+//     struct tree_node *new_p = malloc(sizeof(struct tree_node));
+//     new_p = NULL;
+//     if (p == NULL) {
+//         return NULL;
+//     }
 
-    /*If name is before root:*/   
-    if (strcmp(n, p->data.name) < 0) {        
+//     /*If name is before root:*/   
+//     if (strcmp(n, p->data.name) < 0) {        
+        
+//         /*Delete from before root.*/       
+//         p->left = delete_name(p->left, n);    
+//     }
+
+//     /*if name is after root:*/   
+//     else if (strcmp(n, p->data.name) > 0) {  
+
+//         /*Delete from after root.*/       
+//         p->right = delete_name(p->right, n);    
+//     }
+
+//     // node found
+//     else if (strcmp(n, p->data.name) == 0) {
+//         // node with one or no child
+//         new_p = p;
+//         delete_num(num_tree, new_p);
+//         if (p->left == NULL) {
+//             struct tree_node *tmp = p->right;
+//             free(p);
+//             printf("The contact for %s has been deleted.\n\n", n);
+//             return tmp;
+//         }
+
+//         else if (p->right == NULL) {
+//             struct tree_node *tmp = p->left;
+//             free(p);
+//             printf("The contact for %s has been deleted.\n\n", n);
+//             return tmp;
+//         }
+
+//         // a node with two children
+//         // get the inorder successor - smallest right tree
+//         struct tree_node *tmp = findmin(p->right);
+
+//         // copy inorder successor and copy to node
+//         p->data = tmp->data;
+
+//         // delete the inorder successor
+//         p->right = delete_name(p->right, tmp->data.name);
+
+//     }
+//     return p;
+// }
+
+struct tree_node *delete_name(struct tree_node *p, char *name) {
+    // based on code found at https://www.geeksforgeeks.org/deletion-in-binary-search-tree/ 
+    if (p == NULL) {
+        return p;
+    }
+    if (strcmp(name, p->data.name) < 0) {        
         
         /*Delete from before root.*/       
-        p->left = delete_name(p->left, n);    
+        p->left = delete_name(p->left, name);  
     }
 
-    /*if name is after root:*/   
-    else if (strcmp(n, p->data.name) > 0) {  
+    else if (strcmp(name, p->data.name) > 0) {  
 
         /*Delete from after root.*/       
-        p->right = delete_name(p->right, n);    
+        p->right = delete_name(p->right, name);    
     }
 
     // node found
-    else if (strcmp(n, p->data.name) == 0) {
-        // node with one or no child
-        new_p = p;
-        if (p->left == NULL) {
-            struct tree_node *tmp = p->right;
-            free(p);
-            printf("The contact for %s has been deleted.\n\n", n);
-            return tmp;
-        }
-
-        else if (p->right == NULL) {
-            struct tree_node *tmp = p->left;
-            free(p);
-            printf("The contact for %s has been deleted.\n\n", n);
-            return tmp;
-        }
-
-        // a node with two children
-        // get the inorder successor - smallest right tree
-        struct tree_node *tmp = findmin(p->right);
-
-        // copy inorder successor and copy to node
-        p->data = tmp->data;
-
-        // delete the inorder successor
-        p->right = delete_name(p->right, tmp->data.name);
-
-    }
-    return new_p;
-}
-
-
-
-struct tree_node *delete_num(struct tree_node *p, char n[])
-{
-    // empty node
-    if (p == NULL) {
-        return NULL;
-    }
-
-    /*if number is before root:*/   
-    if (strcmp(n, p->data.phone) < 0) {        
-        
-        /*Delete from before root.*/       
-        p->left = delete_num(p->left, n);    
-    }
-
-    /*If number is after root:*/   
-    else if (strcmp(n, p->data.phone) > 0) {  
-
-        /*Delete from after root.*/       
-        p->right = delete_num(p->right, n);    
-    }
-
-    // node to be deleted
     else {
-        // node with one or no child
+        // node with only 1 child or no children
         if (p->left == NULL) {
             struct tree_node *tmp = p->right;
             free(p);
@@ -348,18 +343,106 @@ struct tree_node *delete_num(struct tree_node *p, char n[])
             return tmp;
         }
 
-        // a node with two children
-        // get the inorder successor - smallest right tree
+        // node with 2 children 
         struct tree_node *tmp = findmin(p->right);
 
-        // copy inorder successor and copy to node
+        // copy the inorder successor's content to this node
         p->data = tmp->data;
-
-        // delete the inorder successor
-        p->right = delete_num(p->right, tmp->data.phone);
+        p->right = delete_name(p->right, tmp->data.name);
     }
     return p;
 }
+
+struct tree_node *delete_num(struct tree_node *p, char *num) {
+    // based on code found at https://www.geeksforgeeks.org/deletion-in-binary-search-tree/ 
+    if (p == NULL) {
+        return p;
+    }
+    if (strcmp(num, p->data.phone) < 0) {        
+        
+        /*Delete from before root.*/       
+        p->left = delete_name(p->left, num);  
+    }
+
+    else if (strcmp(num, p->data.phone) > 0) {  
+
+        /*Delete from after root.*/       
+        p->right = delete_name(p->right, num);    
+    }
+
+    // node found
+    else {
+        // node with only 1 child or no children
+        if (p->left == NULL) {
+            struct tree_node *tmp = p->right;
+            free(p);
+            return tmp;
+        }
+
+        else if (p->right == NULL) {
+            struct tree_node *tmp = p->left;
+            free(p);
+            return tmp;
+        }
+
+        // node with 2 children 
+        struct tree_node *tmp = findmin(p->right);
+
+        // copy the inorder successor's content to this node
+        p->data = tmp->data;
+        p->right = delete_name(p->right, tmp->data.phone);
+    }
+    return p;
+}
+
+// struct tree_node *delete_num(struct tree_node *p, char n[])
+// {
+//     // empty node
+//     if (p == NULL) {
+//         return NULL;
+//     }
+
+//     /*if number is before root:*/   
+//     if (strcmp(n, p->data.phone) < 0) {        
+        
+//         /*Delete from before root.*/       
+//         p->left = delete_num(p->left, n);    
+//     }
+
+//     /*If number is after root:*/   
+//     else if (strcmp(n, p->data.phone) > 0) {  
+
+//         /*Delete from after root.*/       
+//         p->right = delete_num(p->right, n);    
+//     }
+
+//     // node to be deleted
+//     else {
+//         // node with one or no child
+//         if (p->left == NULL) {
+//             struct tree_node *tmp = p->right;
+//             free(p);
+//             return tmp;
+//         }
+
+//         else if (p->right == NULL) {
+//             struct tree_node *tmp = p->left;
+//             free(p);
+//             return tmp;
+//         }
+
+//         // a node with two children
+//         // get the inorder successor - smallest right tree
+//         struct tree_node *tmp = findmin(p->right);
+
+//         // copy inorder successor and copy to node
+//         p->data = tmp->data;
+
+//         // delete the inorder successor
+//         p->right = delete_num(p->right, tmp->data.phone);
+//     }
+//     return p;
+// }
 
 
 
