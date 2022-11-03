@@ -127,7 +127,7 @@ int main(void)
 
             /*Search for a node.*/            
             struct tree_node *p = name_search(pname, name);
-            if (p){
+            if (!p){
                 printf("Name found: \n");
                 printf("%s, %s, %s\n\n", p->data.name, p->data.phone, p->data.address);
             }   
