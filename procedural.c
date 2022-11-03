@@ -336,11 +336,13 @@ struct tree_node *delete_name(struct tree_node *p, char *name) {
         if (p->left == NULL) {
             struct tree_node *tmp = p->right;
             free(p);
+            return root;
         }
 
         else if (p->right == NULL) {
             struct tree_node *tmp = p->left;
             free(p);
+            return root;
         }
 
         // node with 2 children 
@@ -378,11 +380,13 @@ struct tree_node *delete_num(struct tree_node *p, char *num) {
         if (p->left == NULL) {
             struct tree_node *tmp = p->right;
             free(p);
+            return root;
         }
 
         else if (p->right == NULL) {
             struct tree_node *tmp = p->left;
             free(p);
+            return root;
         }
 
         // node with 2 children 
