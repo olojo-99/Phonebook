@@ -127,7 +127,8 @@ int main(void)
 
             /*Search for a node.*/            
             struct tree_node *p = name_search(pname, name);
-            if (p != NULL){
+            // for some reason this returns null
+            if (p){
                 printf("Name found: \n");
                 printf("%s, %s, %s\n\n", p->data.name, p->data.phone, p->data.address);
             }   
@@ -394,6 +395,7 @@ struct tree_node *name_search(struct tree_node *p, char n[])
         struct tree_node *new_p = malloc(sizeof(struct tree_node));
         new_p = p;
         printf("Name found.\n");
+        printf("%s\n", new_p->data.phone);
         return new_p;
     }
 
