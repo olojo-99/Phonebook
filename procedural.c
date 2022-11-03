@@ -405,9 +405,8 @@ struct tree_node *name_search(struct tree_node *p, char n[])
     else {      
         /*Error.*/       
         printf("Record could not be found.\n\n");
+        return NULL;
     }
-    printf("we got to this point\n");
-    return NULL;
 }
 
 
