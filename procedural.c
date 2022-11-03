@@ -126,7 +126,7 @@ int main(void)
             name[strcspn(name, "\n")] = 0;
 
             /*Search for a node.*/            
-            struct tree_node *p = name_search(pname, name);
+            struct tree_node *new_p = name_search(pname, name);
             if (p){
                 printf("Name found: \n");
                 printf("%s, %s, %s\n\n", p->data.name, p->data.phone, p->data.address);
@@ -392,6 +392,7 @@ struct tree_node *name_search(struct tree_node *p, char n[])
     else if (strcmp(n, p->data.name) == 0) {
         // printf("%s, %s, %s\n\n", p->data.name, p->data.phone, p->data.address); /*Print out*/
         struct tree_node *new_p = malloc(sizeof(struct tree_node));
+        new_p = p;
         printf("Name found.\n");
         return new_p;
     }
