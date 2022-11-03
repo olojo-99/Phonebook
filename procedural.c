@@ -131,7 +131,7 @@ int main(void)
             // for some reason this returns null
             printf("%s\n", p->data.phone);
             if (p){
-                printf("Name found: \n");
+                printf("Entry found: \n");
                 printf("%s, %s, %s\n\n", p->data.name, p->data.phone, p->data.address);
             }   
         }
@@ -145,8 +145,13 @@ int main(void)
             fgets(num, 20, stdin);
             num[strcspn(num, "\n")] = 0;
 
-            /*Search for a node.*/            
-            num_search(pnum, num);         
+            /*Search for a node.*/
+            struct tree_node *p = malloc(sizeof(struct tree_node));         
+            p = num_search(pnum, num);
+            if (p){
+                printf("Entry found: \n");
+                printf("%s, %s, %s\n\n", p->data.name, p->data.phone, p->data.address);
+            }       
         }
 
 
@@ -396,8 +401,6 @@ struct tree_node *name_search(struct tree_node *p, char n[])
         // printf("%s, %s, %s\n\n", p->data.name, p->data.phone, p->data.address); /*Print out*/
         struct tree_node *new_p = malloc(sizeof(struct tree_node));
         new_p = p;
-        printf("Name found.\n");
-        printf("%s\n", new_p->data.phone);
         return new_p;
     }
 
@@ -432,16 +435,18 @@ struct tree_node *num_search(struct tree_node *p, char n[])
 
     /*If entry is located:*/    
     else if (strcmp(n, p->data.phone) == 0) {
-       // printf("%s, %s, %s\n\n", p->data.name, p->data.phone, p->data.address); /*Print out*/
-       return p;
+       struct tree_node *new_p = malloc(sizeof(struct tree_node));
+       new_p = p;
+       return new_p;
     }
 
     /*If entry is not found:*/   
     else {
-        /*Error.*/       
+        /*Error.*/
+        return NULL;     
         printf("Record could not be found.\n\n");
     }
-    return NULL;
+    
 }
 
 
