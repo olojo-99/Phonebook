@@ -114,6 +114,7 @@ int main(void)
             
             if (p) {
                 /*Delete a node from name tree*/
+                printf("pre-del num %s\n\n", p->data.phone);
                 pname = delete_name(pname, p->data.name);
 
                 /*Delete the associated num from num tree*/
