@@ -321,7 +321,7 @@ struct tree_node *delete_num(struct tree_node *p, char *num) {
         return p;
     }
     if (strcmp(num, p->data.phone) < 0) {        
-        
+        printf("Target num: %s\nCurrent num: %s\n", num, p->data.phone);
         /*Delete from before root.*/
         printf("%s going left...\n", p->data.name);      
         p->left = delete_num(p->left, num);  
