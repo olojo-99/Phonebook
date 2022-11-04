@@ -110,7 +110,7 @@ int main(void)
             struct tree_node *p = malloc(sizeof(struct tree_node));
             p = name_search(pname, name);
             char *name_temp;
-            char * num_temp;
+            char *num_temp;
             strcpy(name_temp, p->data.name);
             strcpy(num_temp, p->data.phone);
             printf("%s\n", num_temp);
