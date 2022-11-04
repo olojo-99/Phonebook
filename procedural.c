@@ -105,6 +105,7 @@ int main(void)
             printf("Please enter the name: "); 
             fgets(name, 50, stdin);
             name[strcspn(name, "\n")] = 0;
+            printf("this works");
 
             /* Find num associated with name */
             struct tree_node *p = malloc(sizeof(struct tree_node));
