@@ -314,8 +314,9 @@ struct tree_node *delete_num(struct tree_node *p, char *num) {
     // based on code found at https://www.geeksforgeeks.org/deletion-in-binary-search-tree/
     // struct tree_node *root = malloc(sizeof(struct tree_node));
     // root = p; 
-    int ad = atoi(num);
-    int ap = atoi(p->data.phone);
+    printf("root node name: %s\nroot node num: %s\n", p->data.name, p->data.phone);
+    // the node passed in is incorrect for some reason
+    // I check it before the function is called and the pointer points to correct node
     printf("%d, %d\n\n", ad, ap);
     if (p == NULL) {
         return p;
