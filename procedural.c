@@ -285,7 +285,7 @@ struct tree_node *delete_name(struct tree_node *p, char *name) {
     }
 
     // node found
-    else if (strcmp(num, p->data.phone) == 0) {
+    else if (strcmp(name, p->data.name) == 0) {
         // node with only 1 child or no children
         if (p->left == NULL) {
             struct tree_node *tmp = p->right;
