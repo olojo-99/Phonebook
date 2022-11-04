@@ -104,7 +104,6 @@ int main(void)
             clean_stdin();
             printf("Please enter the name: ");
             fgets(name, 50, stdin);
-            printf("this works"); 
             name[strcspn(name, "\n")] = 0;
             
 
@@ -113,16 +112,16 @@ int main(void)
             p = name_search(pname, name);
             char name_temp[50];
             char num_temp[30];
-            printf("works up to here");
+
             strcpy(name_temp, p->data.name);
             strcpy(num_temp, p->data.phone);
-            printf("%s\n", num_temp);
+
 
             
             if (p) {
                 /*Delete a node from name tree*/
                 pname = delete_name(pname, name_temp);
-                printf("%s num to be deleted\n", num_temp);
+
                 /*Delete the associated num from num tree*/
                 pnum = delete_num(pnum, num_temp); 
             }
@@ -330,16 +329,12 @@ struct tree_node *delete_num(struct tree_node *p, char *num) {
     }
 
     if (strcmp(num, p->data.phone) < 0) {        
-        printf("Target num: %s\nCurrent num: %s\n", num, p->data.phone);
-        /*Delete from before root.*/
-        printf("%s going left...\n", p->data.name);      
+        /*Delete from before root.*/    
         p->left = delete_num(p->left, num);  
     }
 
     else if (strcmp(num, p->data.phone) > 0) {  
-        printf("Target num: %s\nCurrent num: %s\n", num, p->data.phone);
-        /*Delete from after root.*/
-        printf("%s going right...\n", p->data.name);         
+        /*Delete from after root.*/        
         p->right = delete_num(p->right, num);    
     }
 
@@ -347,14 +342,12 @@ struct tree_node *delete_num(struct tree_node *p, char *num) {
     else if (strcmp(num, p->data.phone) == 0) {
         // node with only 1 child or no children
         if (p->left == NULL) {
-            printf("No left branch at %s\n", p->data.name);
             struct tree_node *tmp = p->right;
             free(p);
             return tmp;
         }
 
         else if (p->right == NULL) {
-            printf("No right branch at %s\n", p->data.name);
             struct tree_node *tmp = p->left;
             free(p);
             return tmp;
