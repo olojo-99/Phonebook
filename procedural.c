@@ -541,9 +541,6 @@ struct tree_node **test(struct tree_node *nametree, struct tree_node *numtree, E
     }
 
     // print_tree(nametree);
-    if (numtree != NULL){
-        num_search(numtree, "456");
-    }
     
     print_tree(numtree);
     
