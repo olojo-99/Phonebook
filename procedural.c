@@ -354,7 +354,7 @@ struct tree_node *delete_name(struct tree_node *p, char *name) {
         p->data = tmp->data;
         p->right = delete_name(p->right, tmp->data.name);
     }
-    printf("The name returned is: %s\n", p->data.name);
+    printf("The final root is: %s\n", p->data.name);
     return p;
 }
 
