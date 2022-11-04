@@ -103,8 +103,8 @@ int main(void)
             // scanf("%c", &temp); // temp statement to clear buffer
             clean_stdin();
             printf("Please enter the name: ");
-            printf("this works"); 
             fgets(name, 50, stdin);
+            printf("this works"); 
             name[strcspn(name, "\n")] = 0;
             
 
