@@ -107,7 +107,8 @@ int main(void)
             name[strcspn(name, "\n")] = 0;
 
             /* Find num associated with name */
-            struct tree_node *p = name_search(pname, name);
+            struct tree_node *p = malloc(sizeof(struct tree_node));
+            p = name_search(pname, name);
             printf("Name to be deleted %s\nNum to be deleted: %s\n\n", p->data.name, p->data.phone);
             printf("root name: %s \nRoot num %s\n", pnum->data.name, pnum->data.phone);
 
