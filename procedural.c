@@ -541,7 +541,6 @@ struct tree_node **test(struct tree_node *nametree, struct tree_node *numtree, E
     }
 
     // print_tree(nametree);
-    printf("\n");
     print_tree(numtree);
     
     pointer_array[0] = nametree;
