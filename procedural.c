@@ -451,9 +451,7 @@ struct tree_node *num_search(struct tree_node *p, char n[])
 /*Prints contents of tree.*/
 void print_tree(struct tree_node *p) {   
     // printf("The root is %s\n", p->data.name);
-    printf("\n");
     if (p != NULL){         
-        
         /*Print node data.*/        
         print_tree(p->left);        
         printf("%s, %s, %s\n\n", p->data.name, p->data.phone, p->data.address);        
@@ -543,7 +541,7 @@ struct tree_node **test(struct tree_node *nametree, struct tree_node *numtree, E
     }
 
     // print_tree(nametree);
-    
+    printf("\n");
     print_tree(numtree);
     
     pointer_array[0] = nametree;
