@@ -111,6 +111,7 @@ int main(void)
             p = name_search(pname, name);
             char *name_temp;
             char *num_temp;
+            printf("works up to here");
             strcpy(name_temp, p->data.name);
             strcpy(num_temp, p->data.phone);
             printf("%s\n", num_temp);
