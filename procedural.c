@@ -126,8 +126,6 @@ int main(void)
                 /*Delete the associated num from num tree*/
                 pnum = delete_num(pnum, num_temp); 
             }
-            free(name_temp);
-            free(num_temp);
             
         }
 
