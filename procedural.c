@@ -102,10 +102,11 @@ int main(void)
         else if (option == 2) {
             // scanf("%c", &temp); // temp statement to clear buffer
             clean_stdin();
-            printf("Please enter the name: "); 
+            printf("Please enter the name: ");
+            printf("this works"); 
             fgets(name, 50, stdin);
             name[strcspn(name, "\n")] = 0;
-            printf("this works");
+            
 
             /* Find num associated with name */
             struct tree_node *p = malloc(sizeof(struct tree_node));
