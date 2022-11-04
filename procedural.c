@@ -218,7 +218,8 @@ struct tree_node *num_insert(struct tree_node *p, Entry e)
 
 /*Adds a node to the tree.*/
 struct tree_node *name_insert(struct tree_node *p, Entry e) 
-{     
+{
+    printf("Adding name: %s\n", e.name);
     /*If there is no root:*/ 
     if (p == NULL) {       
         /*Create a root.*/       
