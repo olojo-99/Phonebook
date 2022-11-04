@@ -116,7 +116,7 @@ int main(void)
             if (p) {
                 /*Delete a node from name tree*/
                 pname = delete_name(pname, name_temp);
-
+                printf("%s num to be deleted\n", num_temp);
                 /*Delete the associated num from num tree*/
                 pnum = delete_num(pnum, num_temp); 
             }
