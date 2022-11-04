@@ -109,19 +109,19 @@ int main(void)
             /* Find num associated with name */
             struct tree_node *p = malloc(sizeof(struct tree_node));
             p = name_search(pname, name);
-            printf("Name to be deleted %s\nNum to be deleted: %s\n\n", p->data.name, p->data.phone);
-            printf("root name: %s \nRoot num %s\n", pnum->data.name, pnum->data.phone);
+            char *name_temp = p->data.name;
+            char *num_temp = p->data.phone;
 
             
             if (p) {
                 /*Delete a node from name tree*/
-                printf("pre-del num %s\n\n", p->data.phone);
-                pname = delete_name(pname, p->data.name);
+                pname = delete_name(pname, name_temp);
 
                 /*Delete the associated num from num tree*/
-                printf("pre-del num %s\n\n", p->data.phone);
-                pnum = delete_num(pnum, p->data.phone); 
+                pnum = delete_num(pnum, num_temp); 
             }
+            free(name_temp);
+            free(num_temp);
             
         }
 
