@@ -332,14 +332,14 @@ struct tree_node *delete_num(struct tree_node *p, char *num) {
     else {
         // node with only 1 child or no children
         if (p->left == NULL) {
-            printf("No left branch\n");
+            printf("No left branch at %s\n", p->data.name);
             struct tree_node *tmp = p->right;
             free(p);
             return tmp;
         }
 
         else if (p->right == NULL) {
-            printf("No right branch\n");
+            printf("No right branch at %s\n", p->data.name);
             struct tree_node *tmp = p->left;
             free(p);
             return tmp;
