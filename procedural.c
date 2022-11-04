@@ -372,13 +372,13 @@ struct tree_node *delete_num(struct tree_node *p, char *num) {
     if (strcmp(num, p->data.phone) < 0) {        
         
         /*Delete from before root.*/       
-        p->left = delete_name(p->left, num);  
+        p->left = delete_num(p->left, num);  
     }
 
     else if (strcmp(num, p->data.phone) > 0) {  
 
         /*Delete from after root.*/       
-        p->right = delete_name(p->right, num);    
+        p->right = delete_num(p->right, num);    
     }
 
     // node found
