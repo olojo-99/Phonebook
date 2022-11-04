@@ -313,6 +313,9 @@ struct tree_node *delete_num(struct tree_node *p, char *num) {
     // based on code found at https://www.geeksforgeeks.org/deletion-in-binary-search-tree/
     // struct tree_node *root = malloc(sizeof(struct tree_node));
     // root = p; 
+    int ad = atoi(num);
+    int ap = atoi(p->data.phone);
+    printf("%d, %d", ad, ap);
     if (p == NULL) {
         return p;
     }
