@@ -109,11 +109,15 @@ int main(void)
             /* Find num associated with name */
             struct tree_node *p = name_search(pname, name);
 
-            /*Delete a node from name tree*/ 
-            pname = delete_name(pname, p->data.name);
+            
+            if (p) {
+                /*Delete a node from name tree*/
+                pname = delete_name(pname, p->data.name);
 
-            /*Delete the associated num from num tree*/
-            pnum = delete_num(pnum, p->data.phone);
+                /*Delete the associated num from num tree*/
+                pnum = delete_num(pnum, p->data.phone); 
+            }
+            
         }
 
 
