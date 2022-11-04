@@ -285,14 +285,12 @@ struct tree_node *delete_name(struct tree_node *p, char *name) {
         if (p->left == NULL) {
             struct tree_node *tmp = p->right;
             free(p);
-            printf("The name returned is: %s\n", tmp->data.name);
             return tmp;
         }
 
         else if (p->right == NULL) {
             struct tree_node *tmp = p->left;
             free(p);
-            printf("The name returned is: %s\n", tmp->data.name);
             return tmp;
         }
 
