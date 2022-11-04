@@ -109,7 +109,7 @@ int main(void)
             /* Find num associated with name */
             struct tree_node *p = name_search(pname, name);
             printf("Name to be deleted %s\nNum to be deleted: %s\n\n", p->data.name, p->data.phone);
-            printf("root name: %s \n", pnum->data.name);
+            printf("root name: %s \nRoot num %s\n", pnum->data.name, pnum->data.phone);
 
             
             if (p) {
