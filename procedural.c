@@ -111,6 +111,7 @@ int main(void)
             p = name_search(pname, name);
             char *name_temp = p->data.name;
             char *num_temp = p->data.phone;
+            printf("%s\n", num_temp);
 
             
             if (p) {
