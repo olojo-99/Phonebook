@@ -154,9 +154,11 @@ int main(void)
 
 
         /*If option is 5 (List):*/              
-        else if (option == 5) {          
+        else if (option == 5) {
+            printf("Name tree: \n");        
             print_tree(pname);
-            //print_tree(pnum);       
+            printf("Phone tree: \n");
+            print_tree(pnum);       
         }   
 
 
