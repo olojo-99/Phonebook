@@ -315,7 +315,7 @@ struct tree_node *delete_num(struct tree_node *p, char *num) {
     // root = p; 
     int ad = atoi(num);
     int ap = atoi(p->data.phone);
-    printf("%d, %d", ad, ap);
+    printf("%d, %d\n\n", ad, ap);
     if (p == NULL) {
         return p;
     }
