@@ -103,7 +103,7 @@ int main(void)
             // scanf("%c", &temp); // temp statement to clear buffer
             clean_stdin();
             printf("Please enter the name: ");
-            fgets(name, 49, stdin);
+            fgets(name, 50, stdin);
             printf("this works"); 
             name[strcspn(name, "\n")] = 0;
             
@@ -111,8 +111,8 @@ int main(void)
             /* Find num associated with name */
             struct tree_node *p = malloc(sizeof(struct tree_node));
             p = name_search(pname, name);
-            char *name_temp;
-            char *num_temp;
+            char name_temp[50];
+            char num_temp[30];
             printf("works up to here");
             strcpy(name_temp, p->data.name);
             strcpy(num_temp, p->data.phone);
