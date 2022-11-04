@@ -110,15 +110,16 @@ int main(void)
             /* Find num associated with name */
             struct tree_node *p = malloc(sizeof(struct tree_node));
             p = name_search(pname, name);
-            char name_temp[50];
-            char num_temp[30];
-
-            strcpy(name_temp, p->data.name);
-            strcpy(num_temp, p->data.phone);
+            
 
 
             
             if (p) {
+                char name_temp[50];
+                char num_temp[30];
+
+                strcpy(name_temp, p->data.name);
+                strcpy(num_temp, p->data.phone);
                 /*Delete a node from name tree*/
                 pname = delete_name(pname, name_temp);
 
