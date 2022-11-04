@@ -359,7 +359,6 @@ struct tree_node *delete_name(struct tree_node *p, char *name) {
         p->data = tmp->data;
         p->right = delete_name(p->right, tmp->data.name);
     }
-    printf("The final root is: %s\n", p->data.name);
     return p;
 }
 
@@ -402,7 +401,7 @@ struct tree_node *delete_num(struct tree_node *p, char *num) {
 
         // copy the inorder successor's content to this node
         p->data = tmp->data;
-        p->right = delete_name(p->right, tmp->data.phone);
+        p->right = delete_num(p->right, tmp->data.phone);
     }
     return p;
 }
