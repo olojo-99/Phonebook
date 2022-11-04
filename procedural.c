@@ -544,7 +544,7 @@ struct tree_node *num_search(struct tree_node *p, char n[])
 
 /*Prints contents of tree.*/
 void print_tree(struct tree_node *p) {   
-    /*if tree has nodes:*/    
+    printf("The root is %s\n", p->data.name);
     if (p != NULL){         
         
         /*Print node data.*/        
