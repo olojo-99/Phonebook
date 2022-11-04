@@ -314,7 +314,7 @@ struct tree_node *delete_num(struct tree_node *p, char *num) {
     // based on code found at https://www.geeksforgeeks.org/deletion-in-binary-search-tree/
     // struct tree_node *root = malloc(sizeof(struct tree_node));
 
-    printf("%s is the current target num\n\n", p->data.phone);
+    printf("%s is the current target num\n\n", num);
     // the node passed in is incorrect for some reason
     // I check it before the function is called and the pointer points to correct node
     // at some point the target num changes to 321 (Tuomas B)
