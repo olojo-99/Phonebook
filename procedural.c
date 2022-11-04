@@ -369,7 +369,7 @@ struct tree_node *name_search(struct tree_node *p, char n[])
     /*If entry is before root:*/    
     if (p == NULL) {
         printf("Member not found.\n");
-        return NULL;
+        return p;
     }
 
     else if (strcmp(n, p->data.name) < 0) {         
