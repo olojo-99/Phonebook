@@ -356,7 +356,6 @@ struct tree_node *delete_num(struct tree_node *p, char *num) {
 
         // copy the inorder successor's content to this node
         p->data = tmp->data;
-        printf("New name: %s\n", p->data.name);
         p->right = delete_num(p->right, tmp->data.phone);
     }
     return p;
