@@ -156,7 +156,7 @@ int main(void)
         /*If option is 5 (List):*/              
         else if (option == 5) {          
             print_tree(pname);
-            print_tree(pnum);       
+            //print_tree(pnum);       
         }   
 
 
