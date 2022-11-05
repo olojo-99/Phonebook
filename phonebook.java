@@ -488,11 +488,16 @@ public class phonebook {
                             // add test values to tree
                             nameTree.nameInsert(fileName, fileAddress, fileNumber);
                             numTree.numInsert(fileName, fileAddress, fileNumber);
+
                         }
+                        fileReader.close();
                     }
                     catch (FileNotFoundException e){
                         System.out.println("The file could not be found.");
                     }
+
+                    // display the tree
+                    nameTree.display();
 
                     break;
 
