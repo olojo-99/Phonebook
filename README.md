@@ -4,12 +4,13 @@ These are a phonebook programs where you can store numbers, delete and display a
 
 # Menu Options
 Options within the user menus range from 1-6 and can be selected by entering the relevant number
-1) Add a contact
-2) Delete a contact by name and number
-3) Search by Name
-4) Search by Phone number
-5) Display contacts
-6) Quit
+- Add a contact
+- Delete a contact by name and number
+- Search by Name
+- Search by Phone number
+- Display contacts
+- Add Test Contacts to Phonebook
+- Quit
 
 # Example Text Cases
 
