@@ -43,8 +43,10 @@ int main(void)
     int option = 0; /*Variable for option selection.*/    
     Entry e;  /*phone book entry*/
 
-    struct tree_node *pname = NULL; /*name tree node*/    
-    struct tree_node *pnum = NULL; /*num tree node*/
+    struct tree_node *pname; // = malloc(sizeof(struct tree_node)); /*name tree node*/    
+    struct tree_node *pnum; // = malloc(sizeof(struct tree_node)); /*num tree node*/
+    pname = NULL;
+    pnum = NULL;
 
     char name[50]; /* Used for deletions and searching */
     char num[20];
@@ -193,7 +195,7 @@ int main(void)
         /*If the user does not select an existing option.*/            
         else {            
             /*Print error message.*/            
-            printf("That option does not exist. Exiting. \n\n");
+            printf("Invalid option entered.\n\n");
             break; // user may have entered character - can't assign to int      
         } 
 
@@ -238,7 +240,7 @@ struct tree_node *name_insert(struct tree_node *p, Entry e)
 {
     /*If there is no root:*/ 
     if (p == NULL) {       
-        /*Create a root.*/       
+        /*Create a root.*/    
         p = create_node(NULL, NULL, e);    
     }
 
@@ -265,7 +267,7 @@ struct tree_node *create_node (struct tree_node *q, struct tree_node *r, Entry e
 {     
     struct tree_node* newnode;     
     newnode = (struct tree_node*)(malloc(sizeof(struct tree_node)));     
-    newnode->data = e;     
+    newnode->data = e;   
     newnode->left = q;     
     newnode->right = r;     
     return newnode;
@@ -461,11 +463,9 @@ void print_tree(struct tree_node *p) {
 
 struct tree_node **test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
     FILE * fp;
-    struct tree_node **pointer_array = malloc(sizeof(struct tree_node) * 2);
-    char * line;
-    size_t len = 0;
+    struct tree_node **pointer_array = malloc(2 * sizeof(struct tree_node));
+    char line[256];
     ssize_t read;
-//    char traverser = ",";
     int j = 0;
 
     char *sub;
@@ -478,9 +478,9 @@ struct tree_node **test(struct tree_node *nametree, struct tree_node *numtree, E
     char * num;
     char * address;
 
-    const char *names[7];
-    const char *nums[7];
-    const char *addresses[7];
+    char **names = malloc(7 * sizeof(char*));
+    char **nums = malloc(7 * sizeof(char*));
+    char **addresses = malloc(7 * sizeof(char*));
 
     //open test data file
     fp = fopen("test_data.txt", "r");
@@ -490,18 +490,15 @@ struct tree_node **test(struct tree_node *nametree, struct tree_node *numtree, E
         printf("failure opening file");
         exit(EXIT_FAILURE);
     }
+    printf("Caution: do not modify the test data file.\n");
 
-    while((read = getline(&line, &len, fp)) != -1){
-        // printf("%s", line); //used to test file contents
-        
-        // removing newline char at end of line
-        // if (line[strlen(line) -1] == '\n'){
-        //     line[strlen(line) -1] = '\0';
-        // }
+    while(fgets(line, sizeof(line), fp)) {
+        // removing trailing newline
+        line[strcspn(line, "\n")] = 0;
 
-        if(j % 3 == 0  && j < 17) {
+        if(j % 3 == 0) {
             name = line;
-            names[pname] = strdup(name);            
+            names[pname] = strdup(name);         
             pname++;
             // printf("%s", name); test code
         }
@@ -510,7 +507,6 @@ struct tree_node **test(struct tree_node *nametree, struct tree_node *numtree, E
         else if(j % 3 == 1){
             num = line;
             nums[pnum] = strdup(num);
-            // printf("num entered: %s\n", nums[pnum]);
             pnum++;
             // printf("%s", num);
         }
@@ -519,37 +515,35 @@ struct tree_node **test(struct tree_node *nametree, struct tree_node *numtree, E
         else if(j % 3 == 2){
             address = line;
             addresses[padd] = strdup(address);
-            // printf("address entered: %s\n", addresses[padd]);
             padd++;
             // printf("%s", address);
         }
 
         j++;
     }
+
     
-    printf("Generating test tree...\n\n");
+    printf("Generating test trees...\n\n");
     for (int i = 0; i < 6; i++)
     {
+        names[i][strcspn(names[i], "\n")] = 0;
         strcpy(e.name, names[i]);
-        e.name[strcspn(e.name, "\n")] = 0;
+        nums[i][strcspn(nums[i], "\n")] = 0;
         strcpy(e.phone, nums[i]);
-        e.phone[strcspn(e.phone, "\n")] = 0;
+        addresses[i][strcspn(addresses[i], "\n")] = 0;
         strcpy(e.address, addresses[i]);
-        e.address[strcspn(e.address, "\n")] = 0;
+        
         nametree = name_insert(nametree, e);
         numtree = num_insert(numtree, e);
     }
 
+
     // print_tree(nametree);
     print_tree(numtree);
-    
     pointer_array[0] = nametree;
     pointer_array[1] = numtree;
 
     fclose(fp);
-    if(line){
-        free(line);
-    }
 
     
 
