@@ -3,7 +3,7 @@ These are a phonebook programs where you can store numbers, delete and display a
 
 
 # Menu Options
-Options within the user menus range from 1-6 and can be selected by entering the relevant number
+Options presented within the user menus can be selected by entering the corresponding number displayed within the CLI
 - Add a contact
 - Delete a contact by name and number
 - Search by Name
