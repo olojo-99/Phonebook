@@ -52,18 +52,22 @@ int main(void)
     char num[20];
     // char temp; // used to clear input stream for space delimitted inputs
 
+    printf("|===========================|\n");
+    printf("|=====>>>C PHONEBOOK<<<=====|\n");
+    printf("|===========================|\n");
+
     /*Return to menu after each instruction until the user quits.*/    
-    while (option != 6) {
+    while (option != 7) {
 
     /*Show user the option menu.*/        
-        printf("MENU\n");         
-        printf("1. Add\n");         
-        printf("2. Delete\n");                 
-        printf("3. Name Search\n");
-        printf("4. Number Search\n");         
-        printf("5. List\n");         
-        printf("6. Quit\n"); 
-        printf("7. Test.\n");        
+        printf("\nMENU\n");         
+        printf("|1. Add\n");         
+        printf("|2. Delete\n");                 
+        printf("|3. Name Search\n");
+        printf("|4. Number Search\n");         
+        printf("|5. List\n");
+        printf("|6. Test Inputs\n");        
+        printf("|7. Quit\n"); 
 
         /*Get option from the user.*/        
         printf("\nPlease select an option: ");         
@@ -72,7 +76,6 @@ int main(void)
         /*If option is 1 (Add):*/    
         if (option == 1) {            
 
-            // scanf("%c", &temp); // temp statement to clear buffer
             
             printf("Please enter the name: ");
             clean_stdin();   
@@ -84,7 +87,6 @@ int main(void)
             fgets(e.phone, 20, stdin);
             e.phone[strcspn(e.phone, "\n")] = 0;           
 
-            // scanf("%c", &temp); // temp statement to clear buffer
             printf("Please enter the address: ");          
             fgets(e.address, 50, stdin);
             e.address[strcspn(e.address, "\n")] = 0;
@@ -102,7 +104,6 @@ int main(void)
 
         /*If option is 2 (Delete):*/                
         else if (option == 2) {
-            // scanf("%c", &temp); // temp statement to clear buffer
             clean_stdin();
             printf("Please enter the name: ");
             fgets(name, 50, stdin);
@@ -134,7 +135,6 @@ int main(void)
 
         /*If option is 3 (Name Search):*/                
         else if (option == 3) {          
-            // scanf("%c", &temp); // temp statement to clear buffer
             clean_stdin();
             printf("Please enter the name: ");             
             fgets(name, 50, stdin);
@@ -152,7 +152,6 @@ int main(void)
 
         /*If option is 4 (Number Search):*/                
         else if (option == 4) {          
-            // scanf("%c", &temp); // temp statement to clear buffer
             clean_stdin();
             printf("Please enter the number: ");             
             fgets(num, 20, stdin);
@@ -179,17 +178,19 @@ int main(void)
         }   
 
 
-        /*If option is 6 (Quit):*/              
+        /* Test inputs */
         else if (option == 6) {
-            printf("Exiting.\n");           
-            break; /*End the program.*/       
-        }
-
-        else if (option == 7) {
             struct tree_node **tree_pointers = test(pname, pnum, e);
             pname = tree_pointers[0];
             pnum = tree_pointers[1];
         } 
+
+
+        /*If option is 6 (Quit):*/              
+        else if (option == 7) {
+            printf("Exiting.\n");           
+            break; /*End the program.*/       
+        }
 
 
         /*If the user does not select an existing option.*/            
@@ -276,8 +277,6 @@ struct tree_node *create_node (struct tree_node *q, struct tree_node *r, Entry e
 
 struct tree_node *delete_name(struct tree_node *p, char *name) {
     // based on code found at https://www.geeksforgeeks.org/deletion-in-binary-search-tree/
-    // struct tree_node *root = malloc(sizeof(struct tree_node));
-    // root = p; 
     if (p == NULL) {
         return p;
     }
@@ -377,7 +376,6 @@ struct tree_node *findmin(struct tree_node *p)
 /*Searches for a node and retrieves data.*/
 struct tree_node *name_search(struct tree_node *p, char n[]) 
 {    
-    // char res[] = "Member not found\n";
     /*If entry is before root:*/    
     if (p == NULL) {
         printf("Member not found.\n");
@@ -397,7 +395,6 @@ struct tree_node *name_search(struct tree_node *p, char n[])
 
     /*If entry is located:*/    
     else if (strcmp(n, p->data.name) == 0) {
-        // printf("%s, %s, %s\n\n", p->data.name, p->data.phone, p->data.address); /*Print out*/
         struct tree_node *new_p = malloc(sizeof(struct tree_node));
         new_p = p;
         return new_p;
@@ -409,6 +406,8 @@ struct tree_node *name_search(struct tree_node *p, char n[])
         printf("Record could not be found.\n\n");
         return NULL;
     }
+
+    return NULL;
 }
 
 
@@ -445,14 +444,14 @@ struct tree_node *num_search(struct tree_node *p, char n[])
         printf("Record could not be found.\n\n");
         return NULL;     
     }
-    
+
+    return NULL;   
 }
 
 
 
 /*Prints contents of tree.*/
 void print_tree(struct tree_node *p) {   
-    // printf("The root is %s\n", p->data.name);
     if (p != NULL){         
         /*Print node data.*/        
         print_tree(p->left);        
@@ -461,14 +460,16 @@ void print_tree(struct tree_node *p) {
     }
 }
 
+
+
 struct tree_node **test(struct tree_node *nametree, struct tree_node *numtree, Entry e) {
     FILE * fp;
     struct tree_node **pointer_array = malloc(2 * sizeof(struct tree_node));
     char line[256];
-    ssize_t read;
+    // ssize_t read;
     int j = 0;
 
-    char *sub;
+    // char *sub;
 
     int pname = 0;
     int pnum = 0;
@@ -487,10 +488,10 @@ struct tree_node **test(struct tree_node *nametree, struct tree_node *numtree, E
     // if file does not exist
 
     if (fp == NULL){
-        printf("failure opening file");
+        printf("Failure opening file");
         exit(EXIT_FAILURE);
     }
-    printf("Caution: do not modify the test data file.\n");
+    printf("Caution: do not modify the test data file length.\n");
 
     while(fgets(line, sizeof(line), fp)) {
         // removing trailing newline
@@ -500,7 +501,6 @@ struct tree_node **test(struct tree_node *nametree, struct tree_node *numtree, E
             name = line;
             names[pname] = strdup(name);         
             pname++;
-            // printf("%s", name); test code
         }
 
         // number line
@@ -508,7 +508,6 @@ struct tree_node **test(struct tree_node *nametree, struct tree_node *numtree, E
             num = line;
             nums[pnum] = strdup(num);
             pnum++;
-            // printf("%s", num);
         }
 
         //address line
@@ -516,7 +515,6 @@ struct tree_node **test(struct tree_node *nametree, struct tree_node *numtree, E
             address = line;
             addresses[padd] = strdup(address);
             padd++;
-            // printf("%s", address);
         }
 
         j++;
@@ -538,7 +536,6 @@ struct tree_node **test(struct tree_node *nametree, struct tree_node *numtree, E
     }
 
 
-    // print_tree(nametree);
     print_tree(numtree);
     pointer_array[0] = nametree;
     pointer_array[1] = numtree;
