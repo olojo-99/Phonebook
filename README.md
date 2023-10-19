@@ -80,4 +80,3 @@ With the GCC compiler, the C program can be compiled within a UNIX-based CLI by 
 The Java program can be compiled to bytecode by typing "javac phonebook.java" and executed within a JVM by typing "java phonebook".
 
 Alternatively, both programs can be compiled with the makefile using the commnand "make".
-# Phonebook
